@@ -1328,14 +1328,16 @@ button { font-family: var(--font-body); cursor: pointer; }
     position: sticky;
     top: 100px;
 }
-
 @media (max-width: 900px) {
-    .checkout-grid {
-        grid-template-columns: 1fr;
-        gap: 22px;
+    .bento-cat-grid { 
+        grid-template-columns: repeat(2, 1fr); 
+        grid-auto-rows: 170px; 
+        gap: 12px;
     }
-    .checkout-form-card { padding: 22px 18px; order: 1; }
-    .checkout-summary { position: static; order: 2; }
+    .bento-cat-card--large { 
+        grid-column: span 2; 
+        grid-row: span 1; 
+    }
 }
 
 /* ---------- Panier : grille tableau + résumé (responsive propre) ---------- */
