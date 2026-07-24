@@ -1,11 +1,7 @@
 <?php
 $page_title = 'Commandes';
 require_once __DIR__ . '/includes-header.php';
-require_once __DIR__ . '/../config/paiement.php'; // ← AJOUTE CETTE LIGNE
-
-// ============================================
-// COORDONNÉES CCP - Utilise les constantes
-// ============================================
+require_once __DIR__ . '/../config/paiement.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['statut_commande'])) {
     $pdo->prepare("UPDATE commandes SET statut_commande = ? WHERE id = ?")
@@ -22,35 +18,43 @@ if (isset($_GET['id'])) {
     $articles->execute([(int)$_GET['id']]);
     $articles = $articles->fetchAll();
 
-    // Message WhatsApp
+    // ============================================
+    // MESSAGE WHATSAPP - Version finale
+    // ============================================
     $lignes = [];
-    $lignes[] = "Bonjour {$commande['nom_client']},";
-    $lignes[] = "Merci pour votre commande *{$commande['numero_commande']}* chez DermaSoin !";
+    $lignes[] = "Bonjour *{$commande['nom_client']}*,";
     $lignes[] = "";
-    $lignes[] = "*Récapitulatif :*";
+    $lignes[] = "Merci pour votre commande chez DermaSoin !";
+    $lignes[] = "";
+    $lignes[] = "*Récapitulatif de votre commande :*";
     foreach ($articles as $a) {
         $ss_total = $a['prix_unitaire'] * $a['quantite'];
-        $lignes[] = "- {$a['nom_produit']} x{$a['quantite']} — " . prix_format($ss_total);
+        $lignes[] = "• {$a['nom_produit']} × {$a['quantite']} — " . prix_format($ss_total);
     }
     $lignes[] = "";
     $lignes[] = "Sous-total : " . prix_format($commande['sous_total']);
     $lignes[] = "Livraison : " . prix_format($commande['frais_livraison']);
-    $lignes[] = "*Total : " . prix_format($commande['total']) . "*";
+    $lignes[] = "*Total :* " . prix_format($commande['total']);
     $lignes[] = "";
-    $lignes[] = "Adresse de livraison : {$commande['adresse']}, {$commande['wilaya']}";
+    $lignes[] = "Adresse de livraison :";
+    $lignes[] = "{$commande['adresse']}, {$commande['wilaya']}";
 
     if ($commande['mode_paiement'] === 'baridimob') {
-        $lignes[] = "";
-        $lignes[] = "*Paiement BaridiMob / CCP :*";
-        $lignes[] = "CCP : " . CCP_NUMERO . (!empty(CCP_CLE) ? " Clé : " . CCP_CLE : '');
-        $lignes[] = "Titulaire : " . CCP_TITULAIRE;
-        $lignes[] = "Merci d'indiquer le numéro {$commande['numero_commande']} en communication du virement.";
-    } else {
-        $lignes[] = "";
-        $lignes[] = "Paiement à la livraison, en espèces, à la réception du colis.";
-    }
     $lignes[] = "";
-    $lignes[] = "Nous vous contacterons pour la livraison. Merci de votre confiance !";
+    $lignes[] = "Paiement BaridiMob :";
+    $lignes[] = "RIP : *" . BARIDIMOB_RIP . "*";
+    $lignes[] = "Titulaire : " . BARIDIMOB_TITULAIRE;
+    $lignes[] = "";
+    $lignes[] = "Merci de nous transmettre votre *reçu de paiement* par ce même canal afin de finaliser les procédures administratives.";
+    $lignes[] = "Dès validation, votre commande sera préparée et expédiée dans les meilleurs délais.";
+} else {
+    $lignes[] = "";
+    $lignes[] = "Paiement à la livraison : règlement en espèces à la réception de votre colis.";
+    $lignes[] = "";
+    $lignes[] = "Nous vous contacterons pour la livraison.";
+}
+$lignes[] = "";
+$lignes[] = "Merci de votre confiance.";
 
     $message_client = implode("\n", $lignes);
     $tel_client = preg_replace('/[^0-9]/', '', $commande['telephone']);
@@ -63,7 +67,6 @@ if (isset($_GET['id'])) {
     </a>
     <h2>Commande <?= htmlspecialchars($commande['numero_commande']) ?></h2>
 
-    <!-- Bouton WhatsApp -->
     <a href="<?= htmlspecialchars($lien_whatsapp_client) ?>" target="_blank" rel="noopener"
        style="display:inline-flex;align-items:center;gap:8px;background:#25D366;color:#FFFFFF;font-weight:600;font-size:0.88rem;padding:12px 22px;border-radius:100px;margin:14px 0;text-decoration:none;box-shadow:0 4px 16px rgba(37,211,102,0.25);transition:transform 0.2s ease;">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">

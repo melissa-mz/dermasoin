@@ -21,7 +21,7 @@ try {
 define('BASE_URL', '/dermasoin');
 define('SITE_NOM', 'DermaSoin');
 define('SITE_TEL', '+213 550 02 02 63');
-define('SITE_EMAIL', 'info@dermasoin.dz');
+define('SITE_EMAIL', 'dermasoindz@gmail.com');
 define('SITE_ADRESSE', 'Dar El Beida, 16033, Alger - Algérie');
 define('FRAIS_LIVRAISON', 500);
 

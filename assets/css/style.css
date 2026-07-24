@@ -539,11 +539,33 @@ button { font-family: var(--font-body); cursor: pointer; }
 .badge-actif { display: inline-block; font-size: 0.68rem; background: #F0F0F0; color: var(--charbon); padding: 3px 9px; border-radius: 20px; margin: 0 4px 4px 0; }
 .produit-footer { display: flex; align-items: center; justify-content: space-between; margin-top: auto; }
 .prix-bloc { display: flex; flex-direction: column; gap: 5px; }
-.prix { 
-    font-weight: 700; 
-    font-size: 1.05rem; 
-    font-family: var(--font-display) !important; 
-    color: var(--petrole); 
+/* Police pour les prix et les chiffres */
+.prix,
+.prix-bloc,
+.summary-row.total,
+.hero-text .btn,
+.admin-table td,
+.stat-card .val,
+.hero-feature-text,
+.trust-item,
+.cart-table td,
+.payment-option .p-title,
+.form-group label,
+.footer-grid p,
+.footer-grid a,
+.alert,
+.btn {
+    font-family: 'Inter', 'Public Sans', sans-serif;
+}
+
+/* Pour les montants en gras */
+.prix,
+.summary-row.total,
+.stat-card .val {
+    font-weight: 700;
+    font-size: 1.05rem;
+    font-variant-numeric: tabular-nums;  /* ← Chiffres alignés */
+    letter-spacing: 0.01em;
 }
 .prix-barre { text-decoration: line-through; color: var(--charbon-soft); font-weight: 400; font-size: 0.85rem; margin-right: 6px; font-family: var(--font-body); }
 .btn-add { background: var(--petrole); color: #FFFFFF; border: none; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.15rem; transition: all 0.25s ease; }
