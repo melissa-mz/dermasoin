@@ -708,25 +708,93 @@ button { font-family: var(--font-body); cursor: pointer; }
 
 @media (max-width: 600px) {
     .hero { min-height: auto; }
-    .hero-text { padding: 30px 16px; min-height: auto; }
-    .hero-text p.lead { font-size: 0.95rem; }
-    .hero-features { flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 14px; }
-    .hero-feature { flex: 0 1 calc(50% - 14px); min-width: 80px; }
-    .hero-feature-text { font-size: 0.7rem; }
-    .hero-feature-circle { width: 38px; height: 38px; }
-    .hero-feature-circle svg { width: 16px; height: 16px; }
-    .trust-row { gap: 16px; justify-content: center; }
-    .trust-item { font-size: 0.7rem; }
-    .hero-visual { width: 88%; max-width: 360px; margin: 0 auto 30px; }
+    .hero-text { 
+        padding: 20px 16px !important; 
+        min-height: auto; 
+        text-align: center;
+    }
+    .hero-text h1 {
+        font-size: 1.6rem !important;
+        margin-bottom: 8px;
+    }
+    .hero-text p.lead { 
+        font-size: 0.85rem; 
+        margin-bottom: 12px;
+        padding: 0 4px;
+    }
+    .hero-text .btn {
+        font-size: 0.7rem !important;
+        padding: 10px 20px !important;
+        margin: 0 auto;
+    }
+    
+    .hero-features { 
+        flex-direction: row; 
+        flex-wrap: wrap; 
+        justify-content: center; 
+        gap: 10px; 
+        margin-top: 12px;
+    }
+    .hero-feature { 
+        flex: 0 1 calc(50% - 10px); 
+        min-width: 60px; 
+    }
+    .hero-feature-text { 
+        font-size: 0.6rem !important; 
+    }
+    .hero-feature-circle { 
+        width: 32px !important; 
+        height: 32px !important; 
+    }
+    .hero-feature-circle svg { 
+        width: 14px !important; 
+        height: 14px !important; 
+    }
+    .hero-feature:not(:last-child)::after {
+        display: none !important;
+    }
+    
+    .trust-row { 
+        gap: 10px; 
+        justify-content: center; 
+        margin-top: 10px;
+        padding-top: 10px;
+    }
+    .trust-item { 
+        font-size: 0.6rem !important; 
+    }
+    .trust-item::before {
+        width: 4px;
+        height: 4px;
+    }
+    
+    /* 🔥 PHOTO HERO AGRANDIE SUR MOBILE */
+    .hero-visual { 
+        width: 85% !important; 
+        max-width: 320px !important; 
+        margin: 8px auto 16px !important;
+        aspect-ratio: 4/5 !important;
+        border-radius: 50% !important;
+        box-shadow: 0 10px 30px rgba(4,151,167,0.12) !important;
+    }
+    .hero-visual::before {
+        display: none !important;
+    }
+    .hero-visual img {
+        object-fit: cover !important;
+        object-position: center !important;
+    }
+    .hero-glow {
+        display: none !important;
+    }
+    
     .section { padding: 40px 0; }
     .cat-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
     .cat-card { padding: 20px 16px; }
     .footer-grid { grid-template-columns: 1fr; gap: 24px; }
     .produits-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
     .section .produits-grid { grid-template-columns: repeat(2, 1fr); max-width: 100%; }
-    .section-contact .container {
-        padding: 30px 20px;
-    }
+    .section-contact .container { padding: 30px 20px; }
 }
 
 /* ---------- Bento Catégories (dynamique, image produit en fond) ---------- */
