@@ -302,3 +302,523 @@ body {
 
 .glass { background: #FFFFFF; border: 1px solid rgba(4,151,167,0.08); border-radius: var(--admin-radius); }
 .text-primary { color: var(--admin-primary); }
+/* ============================================================
+   ADMIN - RESPONSIVE FINAL 100%
+   ============================================================ */
+
+/* Tablette et mobile */
+@media (max-width: 1024px) {
+    .admin-navbar {
+        padding: 14px 24px !important;
+        flex-wrap: wrap !important;
+        gap: 10px !important;
+    }
+    .admin-navbar::after {
+        left: 24px !important;
+        right: 24px !important;
+    }
+    .admin-main {
+        padding: 20px 24px 40px !important;
+    }
+    .stat-cards {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 14px !important;
+    }
+    .admin-table-wrapper {
+        overflow-x: auto !important;
+    }
+    .admin-table {
+        min-width: 600px !important;
+        font-size: 0.8rem !important;
+    }
+    .admin-table th,
+    .admin-table td {
+        padding: 10px 14px !important;
+    }
+}
+
+/* Mobile (max 768px) */
+@media (max-width: 768px) {
+    /* Navbar */
+    .admin-navbar {
+        padding: 10px 16px !important;
+        gap: 8px !important;
+    }
+    .admin-navbar .logo {
+        font-size: 1.1rem !important;
+        gap: 8px !important;
+    }
+    .admin-navbar .logo .logo-icon {
+        width: 48px !important;
+        height: 40px !important;
+    }
+    
+    /* Liens de navigation admin */
+    .admin-nav-links {
+        width: 100% !important;
+        justify-content: center !important;
+        background: #F8F8F8 !important;
+        border-radius: 10px !important;
+        padding: 4px !important;
+        flex-wrap: wrap !important;
+        gap: 4px !important;
+    }
+    .admin-nav-links a {
+        padding: 6px 12px !important;
+        font-size: 0.7rem !important;
+        white-space: nowrap !important;
+    }
+    
+    /* Déconnexion */
+    .admin-logout {
+        padding: 6px 14px !important;
+        font-size: 0.7rem !important;
+        margin-left: auto !important;
+    }
+    
+    /* Contenu principal */
+    .admin-main {
+        padding: 16px !important;
+    }
+    
+    /* Statistiques */
+    .stat-cards {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 10px !important;
+    }
+    .stat-card {
+        padding: 14px 16px !important;
+    }
+    .stat-card .val {
+        font-size: 1.3rem !important;
+    }
+    .stat-card .lbl {
+        font-size: 0.65rem !important;
+    }
+    
+    /* Page header */
+    .page-header h1 {
+        font-size: 1.4rem !important;
+    }
+    .page-header p {
+        font-size: 0.85rem !important;
+    }
+    
+    /* Bouton retour */
+    .admin-back-btn {
+        padding: 6px 14px !important;
+        font-size: 0.7rem !important;
+        margin-bottom: 12px !important;
+    }
+    .admin-back-btn svg {
+        width: 14px !important;
+        height: 14px !important;
+    }
+    
+    /* Détail commande - grille en colonne sur mobile */
+    .admin-main > div[style*="grid-template-columns"] {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+    }
+    
+    /* Statut select */
+    .status-select-wrap {
+        max-width: 100% !important;
+    }
+    .status-select {
+        padding: 10px 36px 10px 14px !important;
+        font-size: 0.8rem !important;
+    }
+    
+    /* Tableau */
+    .admin-table-wrapper {
+        border-radius: 10px !important;
+    }
+    .admin-table {
+        min-width: 500px !important;
+        font-size: 0.72rem !important;
+    }
+    .admin-table th {
+        padding: 8px 10px !important;
+        font-size: 0.6rem !important;
+    }
+    .admin-table td {
+        padding: 8px 10px !important;
+        font-size: 0.72rem !important;
+    }
+    
+    /* Status pills */
+    .status-pill {
+        font-size: 0.6rem !important;
+        padding: 2px 8px !important;
+    }
+    
+    /* Boutons filtres */
+    .admin-main > div[style*="display:flex"] {
+        gap: 4px !important;
+    }
+    .admin-main > div[style*="display:flex"] a {
+        padding: 4px 10px !important;
+        font-size: 0.65rem !important;
+    }
+    
+    /* Activité grid */
+    .activity-grid {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 10px !important;
+    }
+    .activity-card {
+        padding: 14px 16px !important;
+    }
+    .activity-icon {
+        font-size: 1.5rem !important;
+    }
+    .activity-value {
+        font-size: 1.1rem !important;
+    }
+    .activity-label {
+        font-size: 0.6rem !important;
+    }
+}
+
+/* Très petit mobile (max 480px) */
+@media (max-width: 480px) {
+    .admin-navbar {
+        padding: 8px 12px !important;
+    }
+    .admin-navbar .logo {
+        font-size: 0.95rem !important;
+        gap: 6px !important;
+    }
+    .admin-navbar .logo .logo-icon {
+        width: 38px !important;
+        height: 32px !important;
+    }
+    .admin-nav-links a {
+        padding: 4px 8px !important;
+        font-size: 0.6rem !important;
+    }
+    .admin-logout {
+        padding: 4px 10px !important;
+        font-size: 0.6rem !important;
+    }
+    .admin-main {
+        padding: 12px !important;
+    }
+    .stat-cards {
+        grid-template-columns: 1fr !important;
+        gap: 8px !important;
+    }
+    .stat-card {
+        padding: 12px 14px !important;
+    }
+    .stat-card .val {
+        font-size: 1.1rem !important;
+    }
+    .stat-card .lbl {
+        font-size: 0.6rem !important;
+    }
+    .page-header h1 {
+        font-size: 1.2rem !important;
+    }
+    .admin-table {
+        min-width: 400px !important;
+        font-size: 0.65rem !important;
+    }
+    .admin-table th,
+    .admin-table td {
+        padding: 6px 8px !important;
+        font-size: 0.6rem !important;
+    }
+    .status-pill {
+        font-size: 0.5rem !important;
+        padding: 1px 6px !important;
+    }
+    .admin-back-btn {
+        padding: 4px 10px !important;
+        font-size: 0.6rem !important;
+    }
+    .admin-back-btn svg {
+        width: 12px !important;
+        height: 12px !important;
+    }
+    .admin-main > div[style*="display:flex"] a {
+        padding: 3px 8px !important;
+        font-size: 0.55rem !important;
+    }
+    .activity-grid {
+        grid-template-columns: 1fr !important;
+    }
+    .activity-card {
+        padding: 10px 14px !important;
+    }
+}
+
+/* Correction pour les grids inline dans le code */
+@media (max-width: 768px) {
+    .admin-main > div[style*="display:grid"] {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 16px !important;
+    }
+    .admin-main > div[style*="display:grid"] > div {
+        width: 100% !important;
+    }
+}
+
+/* Correction pour les cards dans commande detail */
+@media (max-width: 768px) {
+    .admin-main > div[style*="display:grid;grid-template-columns:1fr 1fr"] {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+    }
+}
+
+/* Scroll horizontal pour les tableaux sur mobile */
+.admin-table-wrapper {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+}
+
+/* Amélioration de la lisibilité sur mobile */
+@media (max-width: 768px) {
+    .admin-shell {
+        background: #FFFFFF !important;
+    }
+    .admin-navbar {
+        background: #FFFFFF !important;
+        border-bottom: 1px solid rgba(4,151,167,0.08) !important;
+    }
+    .admin-navbar::after {
+        display: none !important;
+    }
+    .admin-table tr:hover td {
+        background: transparent !important;
+    }
+    .status-select-wrap {
+        max-width: 100% !important;
+    }
+}
+/* ============================================================
+   ADMIN PRODUITS - RESPONSIVE
+   ============================================================ */
+
+/* Page produits - liste */
+@media (max-width: 768px) {
+    /* Les actions sur les produits */
+    .admin-produits-actions {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 10px !important;
+        align-items: stretch !important;
+    }
+    .admin-produits-actions .btn {
+        width: 100% !important;
+        text-align: center !important;
+        justify-content: center !important;
+    }
+    
+    /* Filtres et recherche */
+    .admin-filters {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 8px !important;
+    }
+    .admin-filters input,
+    .admin-filters select {
+        width: 100% !important;
+    }
+    
+    /* Grille des produits en carte sur mobile */
+    .admin-produits-grid {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+    }
+    
+    /* Tableau des produits */
+    .admin-produits-table {
+        min-width: 500px !important;
+        font-size: 0.7rem !important;
+    }
+    .admin-produits-table th,
+    .admin-produits-table td {
+        padding: 6px 8px !important;
+        font-size: 0.65rem !important;
+    }
+    
+    /* Image produit dans la liste */
+    .admin-produits-img {
+        width: 40px !important;
+        height: 40px !important;
+    }
+}
+
+/* Petit mobile */
+@media (max-width: 480px) {
+    .admin-produits-table {
+        min-width: 400px !important;
+        font-size: 0.6rem !important;
+    }
+    .admin-produits-table th,
+    .admin-produits-table td {
+        padding: 4px 6px !important;
+        font-size: 0.55rem !important;
+    }
+    .admin-produits-img {
+        width: 30px !important;
+        height: 30px !important;
+    }
+}
+
+/* ============================================================
+   ADMIN FORMULAIRES - RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 768px) {
+    /* Formulaires d'ajout/modification */
+    .admin-form {
+        padding: 16px !important;
+    }
+    .admin-form .form-group {
+        margin-bottom: 12px !important;
+    }
+    .admin-form label {
+        font-size: 0.8rem !important;
+    }
+    .admin-form input,
+    .admin-form select,
+    .admin-form textarea {
+        font-size: 0.85rem !important;
+        padding: 8px 12px !important;
+    }
+    .admin-form .form-row {
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+    }
+    .admin-form .btn {
+        width: 100% !important;
+        justify-content: center !important;
+    }
+    
+    /* Actions en bas de formulaire */
+    .admin-form-actions {
+        flex-direction: column !important;
+        gap: 8px !important;
+    }
+    .admin-form-actions .btn {
+        width: 100% !important;
+    }
+}
+
+/* ============================================================
+   ADMIN TABLEAUX GÉNÉRAUX - RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 768px) {
+    /* Tous les tableaux admin */
+    .admin-table-wrapper {
+        border-radius: 8px !important;
+        margin: 0 -4px !important;
+    }
+    .admin-table {
+        min-width: 500px !important;
+        font-size: 0.7rem !important;
+    }
+    .admin-table th {
+        font-size: 0.6rem !important;
+        padding: 6px 8px !important;
+    }
+    .admin-table td {
+        font-size: 0.7rem !important;
+        padding: 6px 8px !important;
+    }
+    
+    /* Status pills dans les tableaux */
+    .admin-table .status-pill {
+        font-size: 0.55rem !important;
+        padding: 1px 6px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .admin-table {
+        min-width: 380px !important;
+        font-size: 0.6rem !important;
+    }
+    .admin-table th {
+        font-size: 0.55rem !important;
+        padding: 4px 6px !important;
+    }
+    .admin-table td {
+        font-size: 0.6rem !important;
+        padding: 4px 6px !important;
+    }
+}
+
+/* ============================================================
+   ADMIN PAGINATION - RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 768px) {
+    .admin-pagination {
+        flex-wrap: wrap !important;
+        gap: 4px !important;
+        justify-content: center !important;
+    }
+    .admin-pagination .btn {
+        padding: 4px 10px !important;
+        font-size: 0.65rem !important;
+    }
+}
+
+/* ============================================================
+   ADMIN DASHBOARD - RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 768px) {
+    .admin-dashboard-stats {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 10px !important;
+    }
+    .admin-dashboard-card {
+        padding: 14px !important;
+    }
+    .admin-dashboard-card .number {
+        font-size: 1.3rem !important;
+    }
+    .admin-dashboard-card .label {
+        font-size: 0.65rem !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .admin-dashboard-stats {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* ============================================================
+   ADMIN SIDEBAR / MENU - RESPONSIVE (si tu passes en sidebar)
+   ============================================================ */
+
+@media (max-width: 768px) {
+    /* Si tu utilises une sidebar */
+    .admin-layout {
+        flex-direction: column !important;
+    }
+    .admin-sidebar {
+        width: 100% !important;
+        display: flex !important;
+        flex-wrap: wrap !important;
+        padding: 10px !important;
+        gap: 4px !important;
+    }
+    .admin-sidebar a {
+        padding: 6px 12px !important;
+        font-size: 0.7rem !important;
+    }
+    .admin-sidebar .logo {
+        display: none !important;
+    }
+}
