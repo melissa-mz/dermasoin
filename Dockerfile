@@ -15,7 +15,6 @@ RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html
 
 # Configurer le fichier de configuration
-COPY docker-php.ini /usr/local/etc/php/conf.d/custom.ini
 
 # Exposer le port 80
 EXPOSE 80 
