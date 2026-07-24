@@ -9,23 +9,21 @@ $categories = $pdo->query("
     FROM categories c
     ORDER BY c.ordre
 ")->fetchAll();
-$vedettes = $pdo->query("SELECT * FROM produits WHERE actif = TRUE ORDER BY created_at DESC LIMIT 3")->fetchAll();
+
+// 🔥 MODIFICATION : LIMIT 3 → LIMIT 4 (4 produits = 2 lignes de 2 sur mobile)
+$vedettes = $pdo->query("SELECT * FROM produits WHERE actif = TRUE ORDER BY created_at DESC LIMIT 4")->fetchAll();
 ?>
 
 <section class="hero">
     <div class="hero-glow"></div>
     <div class="hero-inner">
         <div class="hero-text">
-    <h1>
-        L'excellence <span class="accent-emeraude">esthétique</span><br>
-        à portée de<br>
-        main.
-    </h1>
-    <a href="<?= BASE_URL ?>/boutique.php" class="btn btn-primary">Découvrir la boutique</a>
-
-   
-</div>
-
+            <h1>
+                L'excellence <span class="accent-emeraude">esthétique</span><br>
+                à portée de<br>
+                main.
+            </h1>
+            <a href="<?= BASE_URL ?>/boutique.php" class="btn btn-primary">Découvrir la boutique</a>
         </div>
         <div class="hero-visual">
             <img src="<?= BASE_URL ?>/assets/img/hero2.jpg" alt="DermaSoin">
