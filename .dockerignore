@@ -1,0 +1,8 @@
+.git
+.gitignore
+README.md
+.vscode
+.DS_Store
+docker-php.ini
+Dockerfile
+ 
