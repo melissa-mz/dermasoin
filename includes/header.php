@@ -28,13 +28,7 @@ $nav_categories = $pdo->query("SELECT * FROM categories ORDER BY ordre")->fetchA
             Derma<span>Soin</span>
         </a>
 
-        <!-- BOUTON HAMBURGER -->
-        <button class="menu-toggle" aria-label="Menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-
+        
         <nav class="main-nav">
             <a href="<?= $base ?>/index.php">Accueil</a>
             <a href="<?= $base ?>/boutique.php">Boutique</a>

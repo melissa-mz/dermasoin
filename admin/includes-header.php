@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/auth.php';
+require_once __DIR__ . '/../includes/cart.php';
 admin_requis();
 $current = basename($_SERVER['PHP_SELF']);
 ?>

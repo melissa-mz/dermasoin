@@ -24,7 +24,9 @@ if ($database_url) {
         die("Erreur de connexion PostgreSQL : " . $e->getMessage());
     }
     
-    define('BASE_URL', '');
+    // ⚠️ CORRECTION : Définir BASE_URL pour Render
+    define('BASE_URL', 'https://dermasoin.onrender.com');
+    
 } else {
     // Connexion locale MySQL (sur Wampserver)
     $DB_HOST = 'localhost';

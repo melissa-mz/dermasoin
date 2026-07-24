@@ -32,7 +32,7 @@ $total = panier_total($pdo);
                 <a href="<?= BASE_URL ?>/boutique.php" class="btn btn-primary">Découvrir la boutique</a>
             </div>
         <?php else: ?>
-        <div style="display:grid;grid-template-columns:2fr 1fr;gap:50px;align-items:start;">
+        <div class="cart-layout">
             <table class="cart-table">
                 <thead>
                     <tr><th>Produit</th><th>Prix</th><th>Quantité</th><th>Sous-total</th><th></th></tr>
@@ -40,7 +40,7 @@ $total = panier_total($pdo);
                 <tbody>
                     <?php foreach ($items as $item): $pr = $item['produit']; ?>
                     <tr>
-                        <td>
+                        <td data-label="Produit">
                             <div class="cart-row-product">
                                 <div class="cart-thumb">
                                     <?php if (!empty($pr['image_principale'])): ?>
@@ -52,8 +52,8 @@ $total = panier_total($pdo);
                                 <a href="<?= BASE_URL ?>/produit.php?slug=<?= $pr['slug'] ?>"><?= htmlspecialchars($pr['nom']) ?></a>
                             </div>
                         </td>
-                        <td><?= prix_format($item['prix_unitaire']) ?></td>
-                        <td>
+                        <td data-label="Prix"><?= prix_format($item['prix_unitaire']) ?></td>
+                        <td data-label="Quantité">
                             <form method="post" style="display:flex;align-items:center;gap:8px;">
                                 <input type="hidden" name="produit_id" value="<?= $pr['id'] ?>">
                                 <input type="hidden" name="action" value="modifier">
@@ -64,12 +64,12 @@ $total = panier_total($pdo);
                                 </div>
                             </form>
                         </td>
-                        <td><?= prix_format($item['sous_total']) ?></td>
-                        <td>
+                        <td data-label="Sous-total"><?= prix_format($item['sous_total']) ?></td>
+                        <td data-label="">
                             <form method="post">
                                 <input type="hidden" name="produit_id" value="<?= $pr['id'] ?>">
                                 <input type="hidden" name="action" value="supprimer">
-                                <button type="submit" style="background:none;border:none;color:var(--erreur);font-size:1rem;cursor:pointer;transition:transform 0.2s ease;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">✕</button>
+                                <button type="submit" class="cart-remove-btn">✕ Retirer</button>
                             </form>
                         </td>
                     </tr>
@@ -77,7 +77,7 @@ $total = panier_total($pdo);
                 </tbody>
             </table>
 
-            <div class="summary-box">
+            <div class="summary-box cart-summary">
                 <h3 style="margin-bottom:20px;">Résumé</h3>
                 <div class="summary-row"><span>Sous-total</span><span><?= prix_format($total) ?></span></div>
                 <div class="summary-row"><span>Livraison</span><span>Calculée à l'étape suivante</span></div>

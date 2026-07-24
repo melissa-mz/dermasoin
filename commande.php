@@ -66,8 +66,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <?php if ($erreur): ?><div class="alert alert-error" style="max-width:700px;margin:0 auto 24px;"><?= htmlspecialchars($erreur) ?></div><?php endif; ?>
 
-        <form method="post" style="display:grid;grid-template-columns:1.3fr 1fr;gap:44px;align-items:start;">
-            <div style="background:#FFFFFF;border-radius:var(--radius-lg);box-shadow:0 2px 16px rgba(0,0,0,0.05);padding:36px;">
+        <form method="post" class="checkout-grid">
+            <div class="checkout-form-card">
 
                 <h3 style="display:flex;align-items:center;gap:10px;margin-bottom:24px;">
                     <span style="display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;background:var(--petrole-transparent);color:var(--petrole);flex-shrink:0;">
@@ -128,7 +128,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
             </div>
 
-            <div class="summary-box" style="position:sticky;top:100px;">
+            <div class="summary-box checkout-summary">
                 <h3 style="margin-bottom:20px;">Votre commande</h3>
                 <?php foreach ($items as $item): ?>
                     <div class="summary-row">
