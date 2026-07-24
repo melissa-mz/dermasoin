@@ -11,7 +11,7 @@ $categories = $pdo->query("
 ")->fetchAll();
 
 // 🔥 MODIFICATION : LIMIT 3 → LIMIT 4 (4 produits = 2 lignes de 2 sur mobile)
-$vedettes = $pdo->query("SELECT * FROM produits WHERE actif = TRUE ORDER BY created_at DESC LIMIT 4")->fetchAll();
+$vedettes = $pdo->query("SELECT * FROM produits WHERE actif = TRUE ORDER BY created_at DESC LIMIT 6")->fetchAll();
 ?>
 
 <section class="hero">

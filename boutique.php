@@ -7,26 +7,37 @@ $categories = $pdo->query("SELECT * FROM categories ORDER BY ordre")->fetchAll()
 // Récupérer la catégorie depuis l'URL
 $cat_slug = $_GET['cat'] ?? '';
 
+// ============================================
+// PAGINATION
+// ============================================
+$produits_par_page = 9;
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+if ($page < 1) $page = 1;
+$offset = ($page - 1) * $produits_par_page;
+
 // Construire la requête SQL avec filtre si catégorie est présente
+$sql_count = "SELECT COUNT(*) FROM produits WHERE actif = TRUE";
 $sql = "SELECT * FROM produits WHERE actif = TRUE";
 $params = [];
 
 if (!empty($cat_slug)) {
-    // Récupérer l'ID de la catégorie via son slug
     $stmt = $pdo->prepare("SELECT id FROM categories WHERE slug = ?");
     $stmt->execute([$cat_slug]);
     $categorie = $stmt->fetch();
     
     if ($categorie) {
-        $sql .= " AND categorie_id = ?";
-        $params[] = $categorie['id'];
+        $sql_count .= " AND categorie_id = " . (int)$categorie['id'];
+        $sql .= " AND categorie_id = " . (int)$categorie['id'];
     }
 }
 
-$sql .= " ORDER BY created_at DESC";
-$stmt = $pdo->prepare($sql);
-$stmt->execute($params);
-$produits = $stmt->fetchAll();
+// Compter le nombre total de produits
+$total_produits = $pdo->query($sql_count)->fetchColumn();
+$total_pages = ceil($total_produits / $produits_par_page);
+
+// Récupérer les produits de la page avec LIMIT et OFFSET
+$sql .= " ORDER BY created_at DESC LIMIT " . (int)$produits_par_page . " OFFSET " . (int)$offset;
+$produits = $pdo->query($sql)->fetchAll();
 
 // Récupérer le nom de la catégorie pour l'affichage
 $categorie_nom = 'Tous nos produits';
@@ -46,6 +57,9 @@ if (!empty($cat_slug)) {
             <div>
                 <span class="eyebrow">Boutique</span>
                 <h2><?= htmlspecialchars($categorie_nom) ?></h2>
+                <p style="color:var(--charbon-soft);font-size:0.85rem;margin-top:4px;">
+                    <?= $total_produits ?> produit<?= $total_produits > 1 ? 's' : '' ?> disponibles
+                </p>
             </div>
             <?php if (!empty($cat_slug)): ?>
                 <a href="<?= BASE_URL ?>/boutique.php" class="btn btn-outline" style="padding:8px 20px;font-size:0.75rem;">Voir tous les produits</a>
@@ -79,6 +93,40 @@ if (!empty($cat_slug)) {
         <div id="aucun-resultat" class="empty-state" style="display:none;">
             Aucun produit ne correspond à votre recherche.
         </div>
+
+        <!-- ============================================ -->
+        <!-- PAGINATION -->
+        <!-- ============================================ -->
+        <?php if ($total_pages > 1): ?>
+        <div class="pagination">
+            <?php if ($page > 1): ?>
+            <a href="?page=<?= $page - 1 ?><?= $cat_slug ? '&cat=' . urlencode($cat_slug) : '' ?>" 
+               class="btn btn-outline">
+                ‹ Précédent
+            </a>
+            <?php endif; ?>
+
+            <?php for ($i = 1; $i <= $total_pages; $i++): ?>
+                <?php if ($i === $page): ?>
+                    <span class="btn btn-primary" style="cursor:default;">
+                        <?= $i ?>
+                    </span>
+                <?php else: ?>
+                    <a href="?page=<?= $i ?><?= $cat_slug ? '&cat=' . urlencode($cat_slug) : '' ?>" 
+                       class="btn btn-outline">
+                        <?= $i ?>
+                    </a>
+                <?php endif; ?>
+            <?php endfor; ?>
+
+            <?php if ($page < $total_pages): ?>
+            <a href="?page=<?= $page + 1 ?><?= $cat_slug ? '&cat=' . urlencode($cat_slug) : '' ?>" 
+               class="btn btn-outline">
+                Suivant ›
+            </a>
+            <?php endif; ?>
+        </div>
+        <?php endif; ?>
     </div>
 </section>
 
