@@ -723,14 +723,13 @@ button { font-family: var(--font-body); cursor: pointer; }
     .hero-features { gap: 20px; }
     .section .produits-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: 100%; }
 }
-
 /* ============================================
-   RESPONSIVE MOBILE (max 900px) - LOGO CENTRÉ
+   RESPONSIVE MOBILE (max 900px)
    ============================================ */
 @media (max-width: 900px) {
     .main-nav { display: none; }
     
-    /* Header en grille */
+    /* Header en grille - LOGO CENTRÉ */
     .header-inner {
         display: grid !important;
         grid-template-columns: auto 1fr auto;
@@ -745,7 +744,6 @@ button { font-family: var(--font-body); cursor: pointer; }
         position: relative;
     }
     
-    /* Logo centré avec texte en dessous */
     .logo {
         grid-area: logo;
         font-size: 1rem !important;
@@ -775,7 +773,6 @@ button { font-family: var(--font-body); cursor: pointer; }
         margin: 0 auto !important;
     }
     
-    /* Hamburger à gauche */
     .menu-toggle {
         grid-area: toggle;
         display: flex !important;
@@ -789,7 +786,6 @@ button { font-family: var(--font-body); cursor: pointer; }
         height: 2px;
     }
     
-    /* Header actions (panier + admin) à droite */
     .header-actions {
         grid-area: actions;
         display: flex !important;
@@ -840,7 +836,6 @@ button { font-family: var(--font-body); cursor: pointer; }
         opacity: 1 !important;
     }
     
-    /* Navigation */
     .main-nav {
         grid-area: nav;
         display: none;
@@ -958,204 +953,68 @@ button { font-family: var(--font-body); cursor: pointer; }
         color: var(--petrole) !important;
     }
     
-    /* Hero en colonne sur mobile */
+    /* ============================================
+       HERO - TEXTE À GAUCHE, IMAGE À DROITE
+       ============================================ */
     .hero-inner { 
-        grid-template-columns: 1fr !important;
-        gap: 0;
-        padding: 0;
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 16px !important;
+        padding: 0 12px !important;
+        align-items: center !important;
+        min-height: auto !important;
+        height: auto !important;
     }
+    
     .hero-text { 
-        padding: 30px 24px; 
-        min-height: auto; 
-        text-align: center; 
-        order: 1;
+        padding: 10px 0 !important; 
+        text-align: left !important; 
+        order: 1 !important;
+        min-height: auto !important;
+    }
+    .hero-text .eyebrow {
+        font-size: 0.5rem !important;
+        margin-bottom: 4px !important;
     }
     .hero-text h1 {
-        font-size: clamp(1.8rem, 4vw, 2.5rem) !important;
+        font-size: 1.2rem !important;
+        margin-bottom: 6px !important;
+        line-height: 1.2 !important;
     }
     .hero-text p.lead { 
-        margin: 0 auto 20px; 
-        max-width: 500px; 
-        font-size: 0.95rem;
+        font-size: 0.7rem !important;
+        margin-bottom: 10px !important;
+        max-width: 100% !important;
     }
     .hero-text .btn { 
-        align-self: center;
-        margin: 0 auto 10px;
-    }
-    .hero-features { 
-        justify-content: center; 
-        gap: 16px; 
-        margin-top: 20px;
-    }
-    .hero-feature { 
-        flex: 0 1 auto; 
-        min-width: 100px; 
-    }
-    .hero-feature-circle {
-        width: 38px !important;
-        height: 38px !important;
-    }
-    .hero-feature-circle svg {
-        width: 16px !important;
-        height: 16px !important;
-    }
-    .hero-feature-text {
-        font-size: 0.7rem !important;
-    }
-    .trust-row { 
-        justify-content: center; 
-        margin-top: 16px;
-        padding-top: 14px;
-        gap: 16px;
-    }
-    .trust-item {
-        font-size: 0.7rem !important;
-    }
-    .hero-visual { 
-        width: 80%; 
-        max-width: 380px; 
-        margin: 0 auto 20px; 
-        order: 2;
-        aspect-ratio: 4/5;
-    }
-    
-    .cat-grid { grid-template-columns: repeat(2, 1fr); }
-    .marques-row { flex-direction: column; gap: 34px; }
-    .marque-sep { width: 60px; height: 1px; }
-    .footer-grid { grid-template-columns: 1fr 1fr; }
-    .form-row { grid-template-columns: 1fr; }
-    .section .produits-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 100%; }
-    .bento-cat-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 170px; }
-    .bento-cat-card--large { grid-column: span 2; grid-row: span 1; }
-}
-
-/* ---------- Très petit mobile ---------- */
-@media (max-width: 480px) {
-    .header-inner {
-        padding: 4px 8px !important;
-    }
-    .logo {
-        font-size: 0.85rem !important;
-        gap: 2px !important;
-    }
-    .logo span {
+        align-self: flex-start !important;
+        margin: 0 !important;
+        padding: 8px 16px !important;
         font-size: 0.6rem !important;
     }
-    .logo-icon {
-        width: 30px !important;
-        height: 26px !important;
-    }
-    .menu-toggle {
-        width: 28px !important;
-        height: 28px !important;
-        gap: 4px !important;
-    }
-    .menu-toggle span {
-        height: 1.8px !important;
-    }
-    .cart-icon {
-        padding: 3px 6px !important;
-        font-size: 0.45rem !important;
-        min-height: 24px;
-    }
-    .cart-icon svg {
-        width: 12px !important;
-        height: 12px !important;
-    }
-    .cart-badge {
-        font-size: 0.4rem !important;
-        padding: 0 3px !important;
-        min-width: 12px;
-    }
-    .lock-icon {
-        width: 22px !important;
-        height: 22px !important;
-    }
-    .lock-icon svg {
-        width: 12px !important;
-        height: 12px !important;
-    }
-    .main-nav a {
-        font-size: 0.78rem !important;
-        padding: 6px 0 !important;
-    }
-    .nav-dropdown-trigger {
-        font-size: 0.78rem !important;
-        padding: 6px 0 !important;
-    }
-    .nav-dropdown-menu a {
-        font-size: 0.7rem !important;
-        padding: 4px 0 !important;
-    }
-    
-    .hero { min-height: auto; }
-    .hero-text { 
-        padding: 20px 16px !important; 
-        min-height: auto; 
-        text-align: center;
-    }
-    .hero-text h1 {
-        font-size: 1.6rem !important;
-        margin-bottom: 8px;
-    }
-    .hero-text p.lead { 
-        font-size: 0.85rem; 
-        margin-bottom: 12px;
-        padding: 0 4px;
-    }
-    .hero-text .btn {
-        font-size: 0.7rem !important;
-        padding: 10px 20px !important;
-        margin: 0 auto;
-    }
     
     .hero-features { 
-        flex-direction: row; 
-        flex-wrap: wrap; 
-        justify-content: center; 
-        gap: 10px; 
-        margin-top: 12px;
+        display: none !important; /* Cache sur mobile */
     }
     .hero-feature { 
-        flex: 0 1 calc(50% - 10px); 
-        min-width: 60px; 
-    }
-    .hero-feature-text { 
-        font-size: 0.6rem !important; 
-    }
-    .hero-feature-circle { 
-        width: 32px !important; 
-        height: 32px !important; 
-    }
-    .hero-feature-circle svg { 
-        width: 14px !important; 
-        height: 14px !important; 
-    }
-    .hero-feature:not(:last-child)::after {
         display: none !important;
     }
     
     .trust-row { 
-        gap: 10px; 
-        justify-content: center; 
-        margin-top: 10px;
-        padding-top: 10px;
-    }
-    .trust-item { 
-        font-size: 0.6rem !important; 
-    }
-    .trust-item::before {
-        width: 4px;
-        height: 4px;
+        display: none !important; /* Cache sur mobile */
     }
     
     .hero-visual { 
-        width: 85% !important; 
-        max-width: 320px !important; 
-        margin: 8px auto 16px !important;
+        width: 100% !important; 
+        max-width: 200px !important; 
+        margin: 0 !important; 
+        order: 2 !important;
         aspect-ratio: 4/5 !important;
         border-radius: 50% !important;
-        box-shadow: 0 10px 30px rgba(4,151,167,0.12) !important;
+        box-shadow: 0 8px 24px rgba(4,151,167,0.10) !important;
+        animation: none !important;
+        align-self: center !important;
+        justify-self: end !important;
     }
     .hero-visual::before {
         display: none !important;
@@ -1166,7 +1025,8 @@ button { font-family: var(--font-body); cursor: pointer; }
     }
     .hero-glow {
         display: none !important;
-    }
+            }
+
     
     .section { padding: 40px 0; }
     .cat-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
