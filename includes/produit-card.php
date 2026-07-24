@@ -15,11 +15,13 @@ if (!empty($p['categorie_id'])) {
 
 $stock = isset($p['stock']) ? (int)$p['stock'] : null;
 $en_rupture = ($stock !== null && $stock <= 0);
+// PostgreSQL: necessite_agrement est BOOLEAN (TRUE/FALSE)
+$necessite_agrement = isset($p['necessite_agrement']) ? (bool)$p['necessite_agrement'] : false;
 ?>
 <div class="produit-card<?= $en_rupture ? ' produit-rupture' : '' ?>" data-nom="<?= htmlspecialchars(mb_strtolower($p['nom'])) ?>">
     <a href="<?= BASE_URL ?>/produit.php?slug=<?= urlencode($p['slug']) ?>" class="produit-img">
         <?php if ($p['prix_promo']): ?><span class="produit-badge">Promo</span><?php endif; ?>
-        <?php if (!empty($p['necessite_agrement'])): ?><span class="produit-badge" style="left:auto;right:12px;background:var(--charbon-soft);">Pro</span><?php endif; ?>
+        <?php if ($necessite_agrement): ?><span class="produit-badge" style="left:auto;right:12px;background:var(--charbon-soft);">Pro</span><?php endif; ?>
         <?php if (!empty($p['image_principale'])): ?>
             <img src="<?= BASE_URL ?>/assets/img/products/<?= htmlspecialchars($p['image_principale']) ?>" alt="<?= htmlspecialchars($p['nom']) ?>" style="width:100%;height:100%;object-fit:cover;">
         <?php else: ?>

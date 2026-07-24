@@ -4,12 +4,12 @@ require_once __DIR__ . '/includes/header.php';
 
 $categories = $pdo->query("
     SELECT c.*,
-        COALESCE(c.image, (SELECT p.image_principale FROM produits p WHERE p.categorie_id = c.id AND p.image_principale IS NOT NULL AND p.actif = 1 ORDER BY p.created_at DESC LIMIT 1)) AS img,
-        (SELECT COUNT(*) FROM produits p WHERE p.categorie_id = c.id AND p.actif = 1) AS nb_produits
+        COALESCE(c.image, (SELECT p.image_principale FROM produits p WHERE p.categorie_id = c.id AND p.image_principale IS NOT NULL AND p.actif = TRUE ORDER BY p.created_at DESC LIMIT 1)) AS img,
+        (SELECT COUNT(*) FROM produits p WHERE p.categorie_id = c.id AND p.actif = TRUE) AS nb_produits
     FROM categories c
     ORDER BY c.ordre
 ")->fetchAll();
-$vedettes = $pdo->query("SELECT * FROM produits WHERE actif = 1 ORDER BY created_at DESC LIMIT 3")->fetchAll();
+$vedettes = $pdo->query("SELECT * FROM produits WHERE actif = TRUE ORDER BY created_at DESC LIMIT 3")->fetchAll();
 ?>
 
 <section class="hero">

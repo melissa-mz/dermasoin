@@ -8,7 +8,7 @@ $categories = $pdo->query("SELECT * FROM categories ORDER BY ordre")->fetchAll()
 $cat_slug = $_GET['cat'] ?? '';
 
 // Construire la requête SQL avec filtre si catégorie est présente
-$sql = "SELECT * FROM produits WHERE actif = 1";
+$sql = "SELECT * FROM produits WHERE actif = TRUE";
 $params = [];
 
 if (!empty($cat_slug)) {
