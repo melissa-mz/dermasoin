@@ -27,11 +27,17 @@ $nav_categories = $pdo->query("SELECT * FROM categories ORDER BY ordre")->fetchA
             <img src="<?= $base ?>/assets/img/logo.jpg" alt="DermaSoin" class="logo-icon" width="48" height="48">
             Derma<span>Soin</span>
         </a>
+
+        <!-- BOUTON HAMBURGER -->
+        <button class="menu-toggle" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
         <nav class="main-nav">
             <a href="<?= $base ?>/index.php">Accueil</a>
             <a href="<?= $base ?>/boutique.php">Boutique</a>
-
-            <!-- NOUVEAU : Bouton "Nos produits" avant Catégories -->
             <a href="<?= $base ?>/boutique.php" class="nav-highlight">Nos produits</a>
 
             <div class="nav-dropdown">
@@ -50,6 +56,7 @@ $nav_categories = $pdo->query("SELECT * FROM categories ORDER BY ordre")->fetchA
 
             <a href="<?= $base ?>/index.php#contact">Contact</a>
         </nav>
+
         <div class="header-actions">
             <a href="<?= $base ?>/panier.php" class="cart-icon">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -71,3 +78,19 @@ $nav_categories = $pdo->query("SELECT * FROM categories ORDER BY ordre")->fetchA
         </div>
     </div>
 </header>
+
+<script>
+// Menu hamburger - ouvre/ferme la navbar
+document.querySelector('.menu-toggle')?.addEventListener('click', function() {
+    this.classList.toggle('active');
+    document.querySelector('.main-nav').classList.toggle('open');
+});
+
+// Dropdown des catégories sur mobile
+document.querySelector('.nav-dropdown-trigger')?.addEventListener('click', function(e) {
+    if (window.innerWidth <= 900) {
+        e.preventDefault();
+        this.closest('.nav-dropdown').querySelector('.nav-dropdown-menu').classList.toggle('open');
+    }
+});
+</script>
