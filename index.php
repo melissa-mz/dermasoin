@@ -21,7 +21,6 @@ $vedettes = $pdo->query("SELECT * FROM produits WHERE actif = TRUE ORDER BY crea
         à portée de<br>
         main.
     </h1>
-    <p class="lead">Des formules concentrées en actifs, sélectionnées pour leur <strong>efficacité clinique</strong> — livrées chez vous, partout en Algérie.</p>
     <a href="<?= BASE_URL ?>/boutique.php" class="btn btn-primary">Découvrir la boutique</a>
 
    
