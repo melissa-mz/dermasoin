@@ -1,28 +1,73 @@
 <?php
 $page_title = 'Produits';
-require_once __DIR__ . '/includes-header.php';
 
-// Suppression
+// ============================================
+// SUPPRESSION - À FAIRE AVANT LE HEADER
+// ============================================
 if (isset($_GET['supprimer'])) {
-    $pdo->prepare("DELETE FROM produits WHERE id = ?")->execute([(int)$_GET['supprimer']]);
-    header('Location: '.BASE_URL.'/admin/produits.php');
+    // Démarrer la session si nécessaire
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+    
+    // Vérifier que l'admin est connecté (sinon rediriger)
+    if (!isset($_SESSION['admin_id'])) {
+        header('Location: ' . BASE_URL . '/admin/login.php');
+        exit;
+    }
+    
+    require_once __DIR__ . '/../config/db.php';
+    
+    $id = (int)$_GET['supprimer'];
+    
+    // Récupérer le nom de l'image pour la supprimer du dossier
+    $stmt = $pdo->prepare("SELECT image_principale FROM produits WHERE id = ?");
+    $stmt->execute([$id]);
+    $produit = $stmt->fetch();
+    
+    if ($produit && !empty($produit['image_principale'])) {
+        $chemin_image = __DIR__ . '/../assets/img/products/' . $produit['image_principale'];
+        if (file_exists($chemin_image)) {
+            unlink($chemin_image); // Supprime l'image du dossier
+        }
+    }
+    
+    // Supprimer le produit
+    $pdo->prepare("DELETE FROM produits WHERE id = ?")->execute([$id]);
+    
+    // Rediriger
+    header('Location: ' . BASE_URL . '/admin/produits.php');
     exit;
 }
 
-// Ajout / édition
+// ============================================
+// AJOUT / ÉDITION - AVANT LE HEADER AUSSI
+// ============================================
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Démarrer la session
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+    
+    if (!isset($_SESSION['admin_id'])) {
+        header('Location: ' . BASE_URL . '/admin/login.php');
+        exit;
+    }
+    
+    require_once __DIR__ . '/../config/db.php';
+    
     $id = (int)($_POST['id'] ?? 0);
     $nom = trim($_POST['nom']);
 
     if ($id) {
-        $slug = $pdo->prepare("SELECT slug FROM produits WHERE id = ?");
-        $slug->execute([$id]);
-        $slug = $slug->fetchColumn();
+        $slug_stmt = $pdo->prepare("SELECT slug FROM produits WHERE id = ?");
+        $slug_stmt->execute([$id]);
+        $slug = $slug_stmt->fetchColumn();
     } else {
         $slug = strtolower(trim(preg_replace('/[^a-zA-Z0-9]+/', '-', $nom))) . '-' . substr(md5(microtime()), 0, 4);
     }
 
-    // Upload de l'image (optionnel — si aucun fichier choisi, on garde l'ancienne photo)
+    // Upload de l'image
     $image_principale = null;
     if (!empty($_FILES['image']['name'])) {
         $ext = strtolower(pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION));
@@ -65,6 +110,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     header('Location: '.BASE_URL.'/admin/produits.php');
     exit;
 }
+
+// ============================================
+// MAINTENANT, ON INCLUT LE HEADER
+// ============================================
+require_once __DIR__ . '/includes-header.php';
 
 $categories = $pdo->query("SELECT * FROM categories ORDER BY ordre")->fetchAll();
 $produits = $pdo->query("SELECT p.*, c.nom AS cat_nom FROM produits p LEFT JOIN categories c ON p.categorie_id = c.id ORDER BY p.created_at DESC")->fetchAll();
