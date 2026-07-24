@@ -1013,3 +1013,239 @@ button { font-family: var(--font-body); cursor: pointer; }
     }
     .nav-dropdown-menu.open { max-height: 400px; }
 }
+/* ============================================
+   NAVBAR 100% RESPONSIVE AVEC BEAUCOUP DE LIENS
+   ============================================ */
+
+/* Version mobile (max 900px) */
+@media (max-width: 900px) {
+    /* Header en grille */
+    .header-inner {
+        display: grid !important;
+        grid-template-columns: auto 1fr auto;
+        grid-template-rows: auto auto;
+        grid-template-areas: 
+            "logo . actions"
+            "nav nav nav";
+        align-items: center;
+        padding: 10px 16px !important;
+        gap: 4px;
+    }
+    
+    .logo {
+        grid-area: logo;
+        font-size: 1.2rem !important;
+        gap: 6px !important;
+    }
+    .logo-icon {
+        width: 44px !important;
+        height: 36px !important;
+    }
+    
+    .menu-toggle {
+        grid-area: actions;
+        justify-self: end;
+        display: flex !important;
+        margin-left: auto;
+        order: 2;
+    }
+    
+    .header-actions {
+        grid-area: actions;
+        display: flex !important;
+        align-items: center;
+        gap: 4px;
+        justify-self: end;
+        margin-right: 8px;
+    }
+    
+    .main-nav {
+        grid-area: nav;
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        padding: 8px 0 4px;
+        border-top: 1px solid var(--sable);
+        margin-top: 6px;
+        gap: 0;
+    }
+    .main-nav.open {
+        display: flex !important;
+    }
+    
+    /* Tous les liens en colonne */
+    .main-nav a,
+    .nav-dropdown {
+        width: 100%;
+        padding: 0;
+    }
+    
+    .main-nav a {
+        font-size: 0.85rem !important;
+        padding: 10px 0 !important;
+        border-bottom: 1px solid rgba(0,0,0,0.04);
+        text-align: left;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .main-nav a:last-child {
+        border-bottom: none;
+    }
+    .main-nav a::after {
+        display: none !important;
+    }
+    
+    /* "Nos produits" en évidence mais sans fond */
+    .nav-highlight {
+        background: transparent !important;
+        color: var(--petrole) !important;
+        font-weight: 700 !important;
+        padding: 10px 0 !important;
+        border-radius: 0 !important;
+    }
+    .nav-highlight::before {
+        content: "★ ";
+        font-size: 0.7rem;
+    }
+    
+    /* Dropdown */
+    .nav-dropdown {
+        flex-direction: column;
+        align-items: flex-start;
+        border-bottom: 1px solid rgba(0,0,0,0.04);
+    }
+    .nav-dropdown-trigger {
+        width: 100%;
+        padding: 10px 0 !important;
+        font-size: 0.85rem !important;
+        justify-content: space-between;
+        display: flex;
+        align-items: center;
+    }
+    .nav-dropdown-trigger svg {
+        transition: transform 0.3s ease;
+        width: 16px;
+        height: 16px;
+    }
+    .nav-dropdown.open .nav-dropdown-trigger svg {
+        transform: rotate(180deg);
+    }
+    
+    .nav-dropdown-menu {
+        position: static !important;
+        transform: none !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+        box-shadow: none !important;
+        border: none !important;
+        background: transparent !important;
+        padding: 0 0 0 16px !important;
+        width: 100%;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        min-width: auto !important;
+    }
+    .nav-dropdown-menu.open {
+        max-height: 400px !important;
+        padding: 4px 0 8px 16px !important;
+    }
+    .nav-dropdown-menu a {
+        font-size: 0.8rem !important;
+        padding: 8px 0 !important;
+        border-bottom: 1px solid rgba(0,0,0,0.02);
+        width: 100%;
+        display: block;
+    }
+    .nav-dropdown-menu a:last-child {
+        border-bottom: none;
+    }
+    
+    /* Panier et admin sur mobile */
+    .cart-icon {
+        padding: 6px 10px !important;
+        font-size: 0.6rem !important;
+        border-radius: 50px !important;
+        gap: 4px !important;
+    }
+    .cart-icon span {
+        display: none !important;
+    }
+    .cart-icon svg {
+        width: 18px !important;
+        height: 18px !important;
+    }
+    .cart-badge {
+        font-size: 0.5rem !important;
+        padding: 0 5px !important;
+        min-width: 16px;
+        text-align: center;
+        line-height: 1.4 !important;
+    }
+    .lock-icon {
+        width: 32px !important;
+        height: 32px !important;
+        opacity: 0.6 !important;
+    }
+    .lock-icon svg {
+        width: 18px !important;
+        height: 18px !important;
+    }
+}
+
+/* Très petit mobile */
+@media (max-width: 480px) {
+    .header-inner {
+        padding: 6px 10px !important;
+        gap: 2px;
+    }
+    .logo {
+        font-size: 1rem !important;
+        gap: 4px !important;
+    }
+    .logo-icon {
+        width: 34px !important;
+        height: 28px !important;
+    }
+    .main-nav a {
+        font-size: 0.78rem !important;
+        padding: 8px 0 !important;
+    }
+    .nav-dropdown-trigger {
+        font-size: 0.78rem !important;
+        padding: 8px 0 !important;
+    }
+    .nav-dropdown-menu a {
+        font-size: 0.72rem !important;
+        padding: 6px 0 !important;
+    }
+    .cart-icon {
+        padding: 4px 8px !important;
+        font-size: 0.5rem !important;
+    }
+    .cart-icon svg {
+        width: 15px !important;
+        height: 15px !important;
+    }
+    .lock-icon {
+        width: 26px !important;
+        height: 26px !important;
+    }
+    .lock-icon svg {
+        width: 15px !important;
+        height: 15px !important;
+    }
+    .menu-toggle {
+        width: 26px !important;
+        height: 26px !important;
+        gap: 3px !important;
+    }
+    .menu-toggle span {
+        height: 1.5px !important;
+    }
+    .nav-highlight {
+        font-size: 0.78rem !important;
+    }
+}
