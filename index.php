@@ -16,7 +16,6 @@ $vedettes = $pdo->query("SELECT * FROM produits WHERE actif = TRUE ORDER BY crea
     <div class="hero-glow"></div>
     <div class="hero-inner">
         <div class="hero-text">
-    <span class="eyebrow">Médecine esthétique &amp; soins premium</span>
     <h1>
         L'excellence <span class="accent-emeraude">esthétique</span><br>
         à portée de<br>
@@ -25,38 +24,7 @@ $vedettes = $pdo->query("SELECT * FROM produits WHERE actif = TRUE ORDER BY crea
     <p class="lead">Des formules concentrées en actifs, sélectionnées pour leur <strong>efficacité clinique</strong> — livrées chez vous, partout en Algérie.</p>
     <a href="<?= BASE_URL ?>/boutique.php" class="btn btn-primary">Découvrir la boutique</a>
 
-    <div class="hero-features">
-        <div class="hero-feature">
-            <span class="hero-feature-circle">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                    <path d="M9 12l2 2 4-4"/>
-                </svg>
-            </span>
-            <span class="hero-feature-text">Actifs sélectionnés<br>avec exigence</span>
-        </div>
-        <div class="hero-feature">
-            <span class="hero-feature-circle">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-                    <polyline points="22 4 12 14.01 9 11.01"/>
-                </svg>
-            </span>
-            <span class="hero-feature-text">Efficacité clinique<br>prouvée</span>
-        </div>
-        <div class="hero-feature">
-            <span class="hero-feature-circle">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="1" y="3" width="15" height="13" rx="2"/>
-                    <polyline points="16 8 20 8 23 11 23 16 16 16 16 8"/>
-                    <circle cx="5.5" cy="18" r="2.5"/>
-                    <circle cx="18.5" cy="18" r="2.5"/>
-                </svg>
-            </span>
-            <span class="hero-feature-text">Livraison rapide<br>en Algérie</span>
-        </div>
-    </div>
-
+   
 </div>
 
         </div>
