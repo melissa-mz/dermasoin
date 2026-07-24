@@ -2,9 +2,10 @@
 $page_title = 'Tableau de bord';
 require_once __DIR__ . '/includes-header.php';
 
+// Correction PostgreSQL : actif = 1 → actif = TRUE
 $nb_commandes = $pdo->query("SELECT COUNT(*) FROM commandes")->fetchColumn();
 $ca_total = $pdo->query("SELECT COALESCE(SUM(total),0) FROM commandes WHERE statut_commande != 'annulee'")->fetchColumn();
-$nb_produits = $pdo->query("SELECT COUNT(*) FROM produits WHERE actif = 1")->fetchColumn();
+$nb_produits = $pdo->query("SELECT COUNT(*) FROM produits WHERE actif = TRUE")->fetchColumn();  // ← Correction ici
 $nb_nouvelles = $pdo->query("SELECT COUNT(*) FROM commandes WHERE statut_commande = 'nouvelle'")->fetchColumn();
 $dernieres = $pdo->query("SELECT * FROM commandes ORDER BY created_at DESC LIMIT 8")->fetchAll();
 ?>
@@ -16,8 +17,6 @@ $dernieres = $pdo->query("SELECT * FROM commandes ORDER BY created_at DESC LIMIT
     <div class="stat-card"><div class="val"><?= $nb_produits ?></div><div class="lbl">Produits actifs</div></div>
     <div class="stat-card"><div class="val"><?= $nb_nouvelles ?></div><div class="lbl">Nouvelles commandes</div></div>
 </div>
-
-
 
 </main></div>
 </body>
