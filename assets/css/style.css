@@ -3,7 +3,7 @@
    FOND BLANC + BEIGE CRÉMEUX
    ============================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,400..600&family=Playfair+Display:wght@700;800;900&family=Public+Sans:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap');
 
 :root {
     --creme: #FFFFFF;
@@ -32,9 +32,13 @@
     --succes: var(--petrole);
     --sable: #E4DDD2;
     --erreur: #B3423D;
-    --font-display: 'Fraunces', 'Georgia', serif;
-    --font-hero: 'Bodoni Moda', 'Playfair Display', serif;
-    --font-body: 'Public Sans', sans-serif;
+    
+    /* Typographie - UNIFORMISÉE */
+        --font-display: 'Georgia', serif;   /* TOUS les titres */
+    --font-hero: 'Bodoni Moda', 'Playfair Display', serif;  /* Uniquement le H1 hero */
+    --font-logo: 'Bodoni Moda', 'Georgia', serif;  /* Logo */
+    --font-body: 'Inter', 'Public Sans', sans-serif;  /* Corps de texte */
+    
     --radius: 4px;
     --radius-lg: 10px;
     --shadow-soft: 0 10px 34px rgba(4, 151, 167, 0.08);
@@ -53,23 +57,76 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3, h4 {
-    font-family: var(--font-display);
+/* Logo - Bodoni Moda */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-family: var(--font-logo);
+    font-weight: 800;
+    font-size: 1.9rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+.logo-icon { 
+    width: 90px; 
+    height: 70px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+.logo span { color: var(--petrole); }
+
+/* ⚠️ ATTENTION : Hero H1 en Bodoni Moda UNIQUEMENT */
+h1 {
+    font-family: var(--font-hero);
+    font-size: clamp(2rem, 3.4vw, 3rem);
+    font-weight: 800;
+    line-height: 1.15;
+    margin: 0 0 0.5em;
+    color: var(--charbon);
+}
+.accent-emeraude { color: var(--petrole); }
+.accent-or { color: var(--petrole-fonce); }
+
+/* ⚠️ ATTENTION : TOUS LES AUTRES TITRES en Playfair Display */
+h1, h2, h3, h4, h5, h6,
+.produit-nom,
+.bento-cat-nom,
+.cat-card h3,
+.marque-nom,
+.section-head h2,
+.footer-grid h4,
+.footer-newsletter h3,
+.produit-cat,
+.cat-card .cat-num,
+.bento-cat-index,
+.bento-cat-count,
+.prix,
+.eyebrow {
+    font-family: var(--font-display) !important;
+}
+
+h2 { 
+    font-size: clamp(1.6rem, 2.8vw, 2.3rem); 
     font-weight: 700;
     line-height: 1.2;
     margin: 0 0 0.5em;
     color: var(--charbon);
 }
-h1 {
-    font-family: var(--font-display);
-    font-size: clamp(2rem, 3.4vw, 3rem);
-    font-weight: 800;
-    line-height: 1.15;
+h3 { 
+    font-size: 1.25rem; 
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0 0 0.5em;
+    color: var(--charbon);
 }
-.accent-emeraude { color: var(--petrole); }
-.accent-or { color: var(--petrole-fonce); }
-h2 { font-family: var(--font-display); font-size: clamp(1.6rem, 2.8vw, 2.3rem); font-weight: 700; }
-h3 { font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; }
+h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0 0 0.5em;
+    color: var(--charbon);
+}
 
 a { color: inherit; text-decoration: none; }
 img { max-width: 100%; display: block; }
@@ -110,18 +167,7 @@ button { font-family: var(--font-body); cursor: pointer; }
     max-width: 1240px;
     margin: 0 auto;
 }
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-family: 'Bodoni Moda', serif;
-    font-weight: 800;
-    font-size: 1.9rem;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-}
-.logo-icon { color: var(--petrole); flex-shrink: 0; width: 64px; height: 64px; }
-.logo span { color: var(--petrole); }
+
 .main-nav { display: flex; gap: 32px; align-items: center; }
 .main-nav a {
     position: relative;
@@ -329,7 +375,8 @@ button { font-family: var(--font-body); cursor: pointer; }
 .hero-text .btn { align-self: flex-start; margin-top: 5px; }
 .hero-text .eyebrow { color: var(--petrole); margin-bottom: 8px; }
 .hero-text h1 {
-    font-family: var(--font-hero); color: var(--charbon);
+    font-family: var(--font-hero);
+    color: var(--charbon);
     text-transform: uppercase; letter-spacing: 0.02em;
     font-size: clamp(2.2rem, 4.4vw, 3.6rem);
     margin-bottom: 20px; line-height: 1.3;
@@ -468,8 +515,21 @@ button { font-family: var(--font-body); cursor: pointer; }
 .produit-img { aspect-ratio: 1/1; background: linear-gradient(160deg, #F0F0F0, var(--sable)); position: relative; display: flex; align-items: center; justify-content: center; color: var(--petrole); font-family: var(--font-display); }
 .produit-badge { position: absolute; top: 12px; left: 12px; background: var(--petrole); color: #FFFFFF; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.04em; padding: 4px 10px; border-radius: 20px; text-transform: uppercase; }
 .produit-body { padding: 18px 18px 20px; flex: 1; display: flex; flex-direction: column; }
-.produit-cat { font-size: 0.72rem; color: var(--petrole); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; font-family: var(--font-body); }
-.produit-nom { font-family: var(--font-display); font-size: 1.02rem; margin-bottom: 6px; font-weight: 700; }
+.produit-cat { 
+    font-size: 0.72rem; 
+    color: var(--petrole); 
+    font-weight: 600; 
+    text-transform: uppercase; 
+    letter-spacing: 0.06em; 
+    margin-bottom: 6px; 
+    font-family: var(--font-display) !important;
+}
+.produit-nom { 
+    font-family: var(--font-display) !important; 
+    font-size: 1.02rem; 
+    margin-bottom: 6px; 
+    font-weight: 700;
+}
 .produit-actifs { 
     font-size: 0.78rem; 
     color: var(--charbon);
@@ -479,7 +539,12 @@ button { font-family: var(--font-body); cursor: pointer; }
 .badge-actif { display: inline-block; font-size: 0.68rem; background: #F0F0F0; color: var(--charbon); padding: 3px 9px; border-radius: 20px; margin: 0 4px 4px 0; }
 .produit-footer { display: flex; align-items: center; justify-content: space-between; margin-top: auto; }
 .prix-bloc { display: flex; flex-direction: column; gap: 5px; }
-.prix { font-weight: 700; font-size: 1.05rem; font-family: var(--font-display); color: var(--petrole); }
+.prix { 
+    font-weight: 700; 
+    font-size: 1.05rem; 
+    font-family: var(--font-display) !important; 
+    color: var(--petrole); 
+}
 .prix-barre { text-decoration: line-through; color: var(--charbon-soft); font-weight: 400; font-size: 0.85rem; margin-right: 6px; font-family: var(--font-body); }
 .btn-add { background: var(--petrole); color: #FFFFFF; border: none; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.15rem; transition: all 0.25s ease; }
 .btn-add:hover { background: var(--petrole-fonce); color: #FFFFFF; transform: scale(1.08); }
@@ -753,7 +818,7 @@ button { font-family: var(--font-body); cursor: pointer; }
     top: 16px;
     right: 18px;
     z-index: 3;
-    font-family: var(--font-hero);
+    font-family: var(--font-display) !important;
     font-size: 0.78rem;
     letter-spacing: 0.08em;
     color: rgba(255,255,255,0.7);
@@ -796,7 +861,7 @@ button { font-family: var(--font-body); cursor: pointer; }
     background: linear-gradient(150deg, var(--petrole), var(--petrole-fonce));
 }
 .bento-cat-fallback span {
-    font-family: var(--font-hero);
+    font-family: var(--font-display) !important;
     font-size: 3.4rem;
     color: rgba(255,255,255,0.4);
     text-transform: uppercase;
@@ -823,9 +888,10 @@ button { font-family: var(--font-body); cursor: pointer; }
     color: var(--petrole-clair);
     font-weight: 700;
     margin-bottom: 8px;
+    font-family: var(--font-display) !important;
 }
 .bento-cat-nom {
-    font-family: var(--font-display);
+    font-family: var(--font-display) !important;
     font-weight: 700;
     color: #FFFFFF;
     font-size: 1.15rem;

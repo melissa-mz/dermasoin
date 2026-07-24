@@ -263,12 +263,29 @@ body {
     .admin-main { padding: 28px 28px 50px; }
     .stat-cards { grid-template-columns: repeat(2, 1fr); gap: 16px; }
     .activity-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+}/* ✅ Logo agrandi — TOUS LES ÉCRANS */
+.admin-navbar .logo .logo-icon {
+    width: 90px;
+    height: 70px;
+    object-fit: contain;
+    flex-shrink: 0;
 }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 1024px) {
+    .admin-navbar { padding: 16px 28px; }
+    .admin-navbar::after { left: 28px; right: 28px; }
+    .admin-main { padding: 28px 28px 50px; }
+    .stat-cards { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .activity-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+}
+
 @media (max-width: 768px) {
     .admin-navbar { flex-wrap: wrap; gap: 12px; padding: 16px 20px; }
     .admin-navbar::after { left: 20px; right: 20px; }
     .admin-navbar .logo { font-size: 1.3rem; }
-    .admin-navbar .logo .logo-icon { width: 36px; height: 36px; }
     .admin-nav-links { width: 100%; justify-content: center; background: #F8F8F8; border-radius: 10px; }
     .admin-nav-links a { padding: 8px 16px; font-size: 0.78rem; }
     .admin-logout { padding: 8px 16px; font-size: 0.78rem; margin-left: auto; }
@@ -280,6 +297,15 @@ body {
     .admin-table { min-width: 600px; font-size: 0.82rem; }
     .admin-table th, .admin-table td { padding: 12px 14px; }
     .activity-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+}
+
+@media (max-width: 480px) {
+    .stat-cards { grid-template-columns: 1fr; }
+    .admin-navbar .logo { font-size: 1.1rem; }
+    .admin-navbar .logo .logo-icon { width: 60px; height: 50px; } /* Plus petit sur mobile */
+    .admin-nav-links a { padding: 6px 12px; font-size: 0.7rem; }
+    .page-header h1 { font-size: 1.4rem; }
+    .activity-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 480px) {
     .stat-cards { grid-template-columns: 1fr; }
