@@ -58,7 +58,7 @@
                 <span>Paiement à la livraison</span>
                 <span>BaridiMob / CCP</span>
             </div>
-            <span>Dar El Beida, Alger — Algérie</span>
+            <span>Alger — Algérie</span>
         </div>
         </div>
     </div>
