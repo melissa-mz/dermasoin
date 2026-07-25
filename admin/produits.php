@@ -25,7 +25,6 @@ if (!isset($_SESSION['admin_id'])) {
 if (isset($_GET['supprimer'])) {
     $id = (int)$_GET['supprimer'];
     
-    // Récupérer le nom de l'image pour la supprimer du dossier
     $stmt = $pdo->prepare("SELECT image_principale FROM produits WHERE id = ?");
     $stmt->execute([$id]);
     $produit = $stmt->fetch();
@@ -72,14 +71,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    // Construction des données pour PostgreSQL
+    // Construction des données (sans actifs)
     $data = [
         'categorie_id' => $_POST['categorie_id'] ?: null,
         'nom' => $nom,
         'slug' => $slug,
         'description' => trim($_POST['description']),
         'description_courte' => trim($_POST['description_courte']),
-        'actifs' => trim($_POST['actifs']),
         'prix' => (float)$_POST['prix'],
         'prix_promo' => $_POST['prix_promo'] !== '' ? (float)$_POST['prix_promo'] : null,
         'stock' => (int)$_POST['stock'],
@@ -89,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     try {
         if ($id) {
-            // Mise à jour
+            // Mise à jour (sans actifs)
             if ($image_principale) {
                 $sql = "UPDATE produits SET 
                     categorie_id = :categorie_id,
@@ -97,7 +95,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     slug = :slug,
                     description = :description,
                     description_courte = :description_courte,
-                    actifs = :actifs,
                     prix = :prix,
                     prix_promo = :prix_promo,
                     stock = :stock,
@@ -114,7 +111,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     slug = :slug,
                     description = :description,
                     description_courte = :description_courte,
-                    actifs = :actifs,
                     prix = :prix,
                     prix_promo = :prix_promo,
                     stock = :stock,
@@ -126,12 +122,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt = $pdo->prepare($sql);
             $stmt->execute($data);
         } else {
-            // Insertion
+            // Insertion (sans actifs)
             $sql = "INSERT INTO produits (
-                categorie_id, nom, slug, description, description_courte, actifs, 
+                categorie_id, nom, slug, description, description_courte, 
                 prix, prix_promo, stock, en_vedette, necessite_agrement, image_principale
             ) VALUES (
-                :categorie_id, :nom, :slug, :description, :description_courte, :actifs,
+                :categorie_id, :nom, :slug, :description, :description_courte,
                 :prix, :prix_promo, :stock, :en_vedette, :necessite_agrement, :image_principale
             )";
             $data['image_principale'] = $image_principale;
@@ -200,10 +196,6 @@ if (isset($_GET['edit'])) {
             <div class="form-group">
                 <label>Description complète</label>
                 <textarea name="description" rows="3"><?= htmlspecialchars($edit['description'] ?? '') ?></textarea>
-            </div>
-            <div class="form-group">
-                <label>Actifs (séparés par des virgules)</label>
-                <input type="text" name="actifs" value="<?= htmlspecialchars($edit['actifs'] ?? '') ?>" placeholder="Vitamine C, Acide hyaluronique">
             </div>
             <div class="form-row">
                 <div class="form-group">
