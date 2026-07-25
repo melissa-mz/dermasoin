@@ -85,7 +85,7 @@ body {
     color: var(--charbon);
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
-        padding-top: 100px; /* Ajuste selon la hauteur de ta navbar */
+    padding-top: 0;
 
 }
 
@@ -129,9 +129,6 @@ button { font-family: var(--font-body); cursor: pointer; }
     top: 0;
     z-index: 100;
     background: #FFFFFF;
-    border-bottom: none;
-    margin-bottom: 0;
-    transition: background 0.3s ease, box-shadow 0.3s ease;
 }
 .site-header.scrolled {
     background: #FFFFFF;
