@@ -822,3 +822,118 @@ body {
         display: none !important;
     }
 }
+/* ============================================================
+   ADMIN HEADER - RESPONSIVE 100%
+   ============================================================ */
+
+/* Tablette et mobile */
+@media (max-width: 1024px) {
+    .admin-navbar {
+        padding: 14px 24px !important;
+        flex-wrap: wrap !important;
+        gap: 10px !important;
+        justify-content: space-between !important;
+    }
+    .admin-navbar::after {
+        left: 24px !important;
+        right: 24px !important;
+    }
+    .admin-navbar .logo {
+        font-size: 1.4rem !important;
+        gap: 8px !important;
+    }
+    .admin-navbar .logo .logo-icon {
+        width: 60px !important;
+        height: 50px !important;
+    }
+    .admin-nav-links {
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        gap: 4px !important;
+        padding: 6px !important;
+        width: 100% !important;
+        order: 3 !important;
+    }
+    .admin-nav-links a {
+        padding: 6px 14px !important;
+        font-size: 0.75rem !important;
+        white-space: nowrap !important;
+    }
+    .admin-logout {
+        padding: 6px 14px !important;
+        font-size: 0.75rem !important;
+        margin-left: auto !important;
+    }
+}
+
+/* Mobile (max 768px) */
+@media (max-width: 768px) {
+    .admin-navbar {
+        padding: 10px 16px !important;
+        gap: 6px !important;
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        align-items: center !important;
+    }
+    .admin-navbar .logo {
+        font-size: 1.1rem !important;
+        gap: 6px !important;
+        order: 0 !important;
+    }
+    .admin-navbar .logo .logo-icon {
+        width: 42px !important;
+        height: 36px !important;
+    }
+    
+    /* Admin nav links - en dessous du logo sur 2 lignes max */
+    .admin-nav-links {
+        width: 100% !important;
+        justify-content: center !important;
+        background: #F8F8F8 !important;
+        border-radius: 10px !important;
+        padding: 4px !important;
+        flex-wrap: wrap !important;
+        gap: 4px !important;
+        order: 2 !important;
+        margin-top: 4px !important;
+        border: 1px solid rgba(4,151,167,0.06) !important;
+    }
+    .admin-nav-links a {
+        padding: 5px 10px !important;
+        font-size: 0.65rem !important;
+        white-space: nowrap !important;
+        border-radius: 6px !important;
+    }
+    
+    .admin-logout {
+        padding: 5px 12px !important;
+        font-size: 0.65rem !important;
+        margin-left: auto !important;
+        order: 1 !important;
+    }
+}
+
+/* Très petit mobile (max 480px) */
+@media (max-width: 480px) {
+    .admin-navbar {
+        padding: 6px 10px !important;
+        gap: 4px !important;
+    }
+    .admin-navbar .logo {
+        font-size: 0.9rem !important;
+        gap: 4px !important;
+    }
+    .admin-navbar .logo .logo-icon {
+        width: 32px !important;
+        height: 28px !important;
+    }
+    .admin-nav-links a {
+        padding: 4px 8px !important;
+        font-size: 0.55rem !important;
+        border-radius: 4px !important;
+    }
+    .admin-logout {
+        padding: 4px 8px !important;
+        font-size: 0.55rem !important;
+    }
+}
