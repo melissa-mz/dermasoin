@@ -2,7 +2,7 @@
 require_once __DIR__ . '/includes/header.php'; // header inclut déjà db.php + cart.php
 
 $slug = $_GET['slug'] ?? '';
-$stmt = $pdo->prepare("SELECT * FROM produits WHERE slug = ? AND actif = 1");
+$stmt = $pdo->prepare("SELECT * FROM produits WHERE slug = ? AND actif = TRUE");  // ← Correction ici : actif = 1 → actif = TRUE
 $stmt->execute([$slug]);
 $p = $stmt->fetch();
 
