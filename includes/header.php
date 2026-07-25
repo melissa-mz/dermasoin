@@ -23,7 +23,7 @@ $nav_categories = $pdo->query("SELECT * FROM categories ORDER BY ordre")->fetchA
 <header class="site-header">
     <div class="header-inner">
         <a href="<?= $base ?>/index.php" class="logo">
-            <img src="<?= $base ?>/assets/img/logo.jpg" alt="DermaSoin" class="logo-icon" width="48" height="48">
+            <img src="<?= $base ?>/assets/img/logo.jpg" alt="DermaSoin" class="logo-icon" width="80" height="80">
             Derma<span>Soin</span>
         </a>
 
