@@ -157,22 +157,30 @@ button { font-family: var(--font-body); cursor: pointer; }
     text-decoration: none;
 }
 @supports ((-webkit-background-clip: text) or (background-clip: text)) {
-    .logo {
-        background: linear-gradient(100deg, var(--charbon) 0%, var(--charbon) 40%, var(--petrole) 65%, var(--petrole-clair) 100%);
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-    }
+   .logo {
+    display: flex;
+    align-items: center;
+    gap: 0px;
+    font-family: 'Cormorant Garamond', 'Georgia', serif;
+     font-weight: 900;
+    font-size: 2rem;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: var(--charbon);
+    text-decoration: none;
+}
+.logo span {
+    color: var(--petrole);
+    font-weight: 400;
+    -webkit-text-fill-color: var(--petrole);
+}
 }
 .logo-icon {
     width: 80px !important;
     height: 80px !important;
     margin: 0 auto !important;
 }
-.logo span { 
-    color: var(--petrole); 
-    -webkit-text-fill-color: var(--petrole); 
-}
+
 .main-nav { display: flex; gap: 32px; align-items: center; }
 .main-nav a {
     position: relative;
