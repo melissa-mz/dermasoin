@@ -29,8 +29,12 @@ $necessite_agrement = isset($p['necessite_agrement']) ? (bool)$p['necessite_agre
         <?php endif; ?>
     </a>
     <div class="produit-body">
-        <?php if ($categorie_nom): ?><div class="produit-cat"><?= htmlspecialchars($categorie_nom) ?></div><?php endif; ?>
+        <!-- 🔥 NOM DU PRODUIT EN PREMIER -->
         <a href="<?= BASE_URL ?>/produit.php?slug=<?= urlencode($p['slug']) ?>"><h3 class="produit-nom"><?= htmlspecialchars($p['nom']) ?></h3></a>
+        
+        <!-- 🔥 CATÉGORIE EN DESSOUS -->
+        <?php if ($categorie_nom): ?><div class="produit-cat"><?= htmlspecialchars($categorie_nom) ?></div><?php endif; ?>
+        
         <div>
             <?php foreach (array_slice($actifs_list, 0, 2) as $actif): ?>
                 <span class="badge-actif"><?= htmlspecialchars($actif) ?></span>
