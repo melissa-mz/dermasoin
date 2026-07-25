@@ -13,7 +13,7 @@ if (!$p) {
 }
 
 $page_title = $p['nom'];
-$actifs_list = array_filter(array_map('trim', explode(',', $p['actifs'] ?? '')));
+$actifs_list = []; // La colonne actifs a été supprimée
 $prix_unitaire = $p['prix_promo'] ?? $p['prix'];
 ?>
 

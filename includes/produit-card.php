@@ -1,8 +1,7 @@
 <?php
 if (empty($p) || !is_array($p)) return;
 
-$actifs_list = array_filter(array_map('trim', explode(',', $p['actifs'] ?? '')));
-$categorie_nom = '';
+$actifs_list = [];$categorie_nom = '';
 if (!empty($p['categorie_id'])) {
     static $cat_cache = [];
     if (!isset($cat_cache[$p['categorie_id']])) {
