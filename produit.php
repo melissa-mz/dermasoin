@@ -54,7 +54,7 @@ $prix_unitaire = $p['prix_promo'] ?? $p['prix'];
                 <?php endforeach; ?>
             </div>
             
-            <!-- PRIX UNITAIRE EN CADRE -->
+            <!-- PRIX UNITAIRE EN CADRE (NOIR) -->
             <div style="font-size:1.8rem;font-weight:700;font-family:'Inter','Arial',sans-serif;color:#1C1F1F;margin-bottom:16px;background:var(--creme-moyen);padding:12px 20px;border-radius:var(--radius-lg);display:inline-block;">
                 <?php if ($p['prix_promo']): ?>
                     <span style="text-decoration:line-through;color:var(--charbon-soft);font-weight:400;font-size:1.2rem;margin-right:10px;"><?= prix_format($p['prix']) ?></span>
@@ -86,8 +86,8 @@ $prix_unitaire = $p['prix_promo'] ?? $p['prix'];
                         </button>
                     </div>
 
-                    <!-- TOTAL QUI CHANGE DYNAMIQUEMENT -->
-                    <div style="font-size:1.1rem;font-weight:700;color:var(--petrole);font-family:'Inter','Arial',sans-serif;">
+                    <!-- TOTAL QUI CHANGE DYNAMIQUEMENT (NOIR) -->
+                    <div style="font-size:1.3rem;font-weight:700;color:#1C1F1F;font-family:'Inter','Arial',sans-serif;">
                         <span id="prix-total"><?= prix_format($prix_unitaire) ?></span>
                     </div>
 
