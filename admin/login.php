@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <div class="form-group">
                 <label>Email</label>
-                <input type="email" name="email" required autofocus placeholder="admin@dermasoin.dz" value="<?= htmlspecialchars($_POST['email'] ?? '') ?>">
+                <input type="email" name="email"value="<?= htmlspecialchars($_POST['email'] ?? '') ?>">
             </div>
             <div class="form-group">
                 <label>Mot de passe</label>
