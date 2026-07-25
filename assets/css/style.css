@@ -523,7 +523,6 @@ button { font-family: var(--font-body); cursor: pointer; }
 .marque-item p { font-size: 0.86rem; color: #C9C3B9; margin: 0; font-family: var(--font-body); }
 .marque-sep { width: 1px; height: 90px; background: linear-gradient(180deg, transparent, rgba(4, 151, 167, 0.4), transparent); flex-shrink: 0; }
 .marques-note { text-align: center; font-size: 0.78rem; color: #9A9488; margin: 44px 0 0; letter-spacing: 0.02em; }
-
 /* ---------- Produits ---------- */
 .produits-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 38px; }
 .section .produits-grid { grid-template-columns: repeat(3, minmax(0, 360px)); justify-content: center; max-width: 1140px; margin: 0 auto; }
@@ -531,6 +530,30 @@ button { font-family: var(--font-body); cursor: pointer; }
 .produit-card:hover { box-shadow: var(--shadow-soft); transform: translateY(-5px); }
 .produit-img { aspect-ratio: 1/1; background: linear-gradient(160deg, #F0F0F0, var(--sable)); position: relative; display: flex; align-items: center; justify-content: center; color: var(--petrole); font-family: var(--font-display); }
 .produit-badge { position: absolute; top: 12px; left: 12px; background: var(--petrole); color: #FFFFFF; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.04em; padding: 4px 10px; border-radius: 20px; text-transform: uppercase; }
+
+/* Badge stock sur l'image */
+.stock-badge {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    font-family: 'Public Sans', 'Arial', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 20px;
+    z-index: 2;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    color: #000000 !important;
+}
+.stock-badge--dispo {
+    background: rgba(34, 197, 94, 0.92);
+}
+.stock-badge--rupture {
+    background: rgba(229, 62, 62, 0.92);
+}
+
 .produit-body { padding: 18px 18px 20px; flex: 1; display: flex; flex-direction: column; }
 .produit-cat { font-size: 0.72rem; color: var(--petrole); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; font-family: var(--font-body); }
 .produit-nom { font-family: var(--font-display); font-size: 1.02rem; margin-bottom: 6px; font-weight: 700; }
@@ -546,8 +569,8 @@ button { font-family: var(--font-body); cursor: pointer; }
 .prix { 
     font-weight: 700; 
     font-size: 1.05rem; 
-    font-family: 'Inter', 'Arial', sans-serif; /* ← Police basic */
-    color: #1C1F1F; /* ← Noir */
+    font-family: 'Inter', 'Arial', sans-serif;
+    color: #1C1F1F;
 }
 .prix-barre { text-decoration: line-through; color: var(--charbon-soft); font-weight: 400; font-size: 0.85rem; margin-right: 6px; font-family: var(--font-body); }
 .btn-add { background: var(--petrole); color: #FFFFFF; border: none; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.15rem; transition: all 0.25s ease; }
@@ -557,6 +580,7 @@ button { font-family: var(--font-body); cursor: pointer; }
 .badge-stock { display: inline-block; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; padding: 3px 10px; border-radius: 20px; white-space: nowrap; width: fit-content; }
 .badge-stock--dispo { background: rgba(220, 245, 220, 0.95); color: #1a6b2a; border: 1px solid rgba(26, 107, 42, 0.20); }
 .badge-stock--rupture { background: rgba(255, 59, 48, 0.10); color: #E53E3E; border: 1px solid rgba(229, 62, 62, 0.25); }
+/* Supprime ces lignes */
 .produit-rupture { opacity: 0.75; }
 .produit-rupture .produit-img { filter: grayscale(20%); }
 

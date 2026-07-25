@@ -26,6 +26,13 @@ $necessite_agrement = isset($p['necessite_agrement']) ? (bool)$p['necessite_agre
         <?php else: ?>
             <span style="font-size:2rem;">🧴</span>
         <?php endif; ?>
+        
+        <!-- BADGE STOCK SUR L'IMAGE (en bas à droite) -->
+        <?php if ($stock !== null): ?>
+            <span class="stock-badge <?= $en_rupture ? 'stock-badge--rupture' : 'stock-badge--dispo' ?>" style="color: #000000 !important;">
+                <?= $en_rupture ? 'Rupture' : 'En stock' ?>
+            </span>
+        <?php endif; ?>
     </a>
     <div class="produit-body">
         <!-- 🔥 NOM DU PRODUIT EN PREMIER -->
@@ -47,11 +54,6 @@ $necessite_agrement = isset($p['necessite_agrement']) ? (bool)$p['necessite_agre
                     <?php endif; ?>
                     <?= prix_format($p['prix_promo'] ?? $p['prix']) ?>
                 </div>
-                <?php if ($stock !== null): ?>
-                    <span class="badge-stock <?= $en_rupture ? 'badge-stock--rupture' : 'badge-stock--dispo' ?>">
-                        <?= $en_rupture ? 'Rupture de stock' : 'En stock' ?>
-                    </span>
-                <?php endif; ?>
             </div>
             <form method="post" action="<?= BASE_URL ?>/panier.php">
                 <input type="hidden" name="produit_id" value="<?= $p['id'] ?>">
