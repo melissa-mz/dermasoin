@@ -85,6 +85,8 @@ body {
     color: var(--charbon);
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
+        padding-top: 100px; /* Ajuste selon la hauteur de ta navbar */
+
 }
 
 h1, h2, h3, h4 {
