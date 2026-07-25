@@ -2,22 +2,24 @@
 $page_title = 'Produits';
 
 // ============================================
-// SUPPRESSION - À FAIRE AVANT LE HEADER
+// DÉMARRER LA SESSION UNE SEULE FOIS
+// ============================================
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+// Vérifier que l'admin est connecté
+if (!isset($_SESSION['admin_id'])) {
+    header('Location: ' . BASE_URL . '/admin/login.php');
+    exit;
+}
+
+require_once __DIR__ . '/../config/db.php';
+
+// ============================================
+// SUPPRESSION
 // ============================================
 if (isset($_GET['supprimer'])) {
-    // Démarrer la session si nécessaire
-    if (session_status() === PHP_SESSION_NONE) {
-        session_start();
-    }
-    
-    // Vérifier que l'admin est connecté (sinon rediriger)
-    if (!isset($_SESSION['admin_id'])) {
-        header('Location: ' . BASE_URL . '/admin/login.php');
-        exit;
-    }
-    
-    require_once __DIR__ . '/../config/db.php';
-    
     $id = (int)$_GET['supprimer'];
     
     // Récupérer le nom de l'image pour la supprimer du dossier
@@ -28,34 +30,20 @@ if (isset($_GET['supprimer'])) {
     if ($produit && !empty($produit['image_principale'])) {
         $chemin_image = __DIR__ . '/../assets/img/products/' . $produit['image_principale'];
         if (file_exists($chemin_image)) {
-            unlink($chemin_image); // Supprime l'image du dossier
+            unlink($chemin_image);
         }
     }
     
-    // Supprimer le produit
     $pdo->prepare("DELETE FROM produits WHERE id = ?")->execute([$id]);
     
-    // Rediriger
     header('Location: ' . BASE_URL . '/admin/produits.php');
     exit;
 }
 
 // ============================================
-// AJOUT / ÉDITION - AVANT LE HEADER AUSSI
+// AJOUT / ÉDITION
 // ============================================
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Démarrer la session
-    if (session_status() === PHP_SESSION_NONE) {
-        session_start();
-    }
-    
-    if (!isset($_SESSION['admin_id'])) {
-        header('Location: ' . BASE_URL . '/admin/login.php');
-        exit;
-    }
-    
-    require_once __DIR__ . '/../config/db.php';
-    
     $id = (int)($_POST['id'] ?? 0);
     $nom = trim($_POST['nom']);
 
@@ -81,32 +69,77 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
+    // Construction des données pour PostgreSQL
     $data = [
-        $_POST['categorie_id'] ?: null,
-        $nom,
-        $slug,
-        trim($_POST['description']),
-        trim($_POST['description_courte']),
-        trim($_POST['actifs']),
-        (float)$_POST['prix'],
-        $_POST['prix_promo'] !== '' ? (float)$_POST['prix_promo'] : null,
-        (int)$_POST['stock'],
-        isset($_POST['en_vedette']) ? 1 : 0,
-        isset($_POST['necessite_agrement']) ? 1 : 0,
+        'categorie_id' => $_POST['categorie_id'] ?: null,
+        'nom' => $nom,
+        'slug' => $slug,
+        'description' => trim($_POST['description']),
+        'description_courte' => trim($_POST['description_courte']),
+        'actifs' => trim($_POST['actifs']),
+        'prix' => (float)$_POST['prix'],
+        'prix_promo' => $_POST['prix_promo'] !== '' ? (float)$_POST['prix_promo'] : null,
+        'stock' => (int)$_POST['stock'],
+        'en_vedette' => isset($_POST['en_vedette']) ? true : false,  // PostgreSQL BOOLEAN
+        'necessite_agrement' => isset($_POST['necessite_agrement']) ? true : false,  // PostgreSQL BOOLEAN
     ];
 
-    if ($id) {
-        if ($image_principale) {
-            $pdo->prepare("UPDATE produits SET categorie_id=?, nom=?, slug=?, description=?, description_courte=?, actifs=?, prix=?, prix_promo=?, stock=?, en_vedette=?, necessite_agrement=?, image_principale=? WHERE id=?")
-                ->execute([...$data, $image_principale, $id]);
+    try {
+        if ($id) {
+            // Mise à jour
+            if ($image_principale) {
+                $sql = "UPDATE produits SET 
+                    categorie_id = :categorie_id,
+                    nom = :nom,
+                    slug = :slug,
+                    description = :description,
+                    description_courte = :description_courte,
+                    actifs = :actifs,
+                    prix = :prix,
+                    prix_promo = :prix_promo,
+                    stock = :stock,
+                    en_vedette = :en_vedette,
+                    necessite_agrement = :necessite_agrement,
+                    image_principale = :image_principale
+                    WHERE id = :id";
+                $data['image_principale'] = $image_principale;
+                $data['id'] = $id;
+            } else {
+                $sql = "UPDATE produits SET 
+                    categorie_id = :categorie_id,
+                    nom = :nom,
+                    slug = :slug,
+                    description = :description,
+                    description_courte = :description_courte,
+                    actifs = :actifs,
+                    prix = :prix,
+                    prix_promo = :prix_promo,
+                    stock = :stock,
+                    en_vedette = :en_vedette,
+                    necessite_agrement = :necessite_agrement
+                    WHERE id = :id";
+                $data['id'] = $id;
+            }
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute($data);
         } else {
-            $pdo->prepare("UPDATE produits SET categorie_id=?, nom=?, slug=?, description=?, description_courte=?, actifs=?, prix=?, prix_promo=?, stock=?, en_vedette=?, necessite_agrement=? WHERE id=?")
-                ->execute([...$data, $id]);
+            // Insertion
+            $sql = "INSERT INTO produits (
+                categorie_id, nom, slug, description, description_courte, actifs, 
+                prix, prix_promo, stock, en_vedette, necessite_agrement, image_principale
+            ) VALUES (
+                :categorie_id, :nom, :slug, :description, :description_courte, :actifs,
+                :prix, :prix_promo, :stock, :en_vedette, :necessite_agrement, :image_principale
+            )";
+            $data['image_principale'] = $image_principale;
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute($data);
         }
-    } else {
-        $pdo->prepare("INSERT INTO produits (categorie_id, nom, slug, description, description_courte, actifs, prix, prix_promo, stock, en_vedette, necessite_agrement, image_principale) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)")
-            ->execute([...$data, $image_principale]);
+    } catch (PDOException $e) {
+        // Gérer l'erreur (slug dupliqué, etc.)
+        die("Erreur lors de l'enregistrement : " . $e->getMessage());
     }
+    
     header('Location: '.BASE_URL.'/admin/produits.php');
     exit;
 }
