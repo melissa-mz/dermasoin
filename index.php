@@ -36,7 +36,7 @@ $vedettes = $pdo->query("SELECT * FROM produits WHERE actif = TRUE ORDER BY crea
         <div class="section-head">
             <div>
                 <span class="eyebrow">Nos univers</span>
-                <h2>Une routine, par expertise</h2>
+                <h2>Nos Catégories </h2>
             </div>
         </div>
         <div class="bento-cat-grid">

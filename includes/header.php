@@ -15,7 +15,7 @@ $nav_categories = $pdo->query("SELECT * FROM categories ORDER BY ordre")->fetchA
 
     <!-- FAVICON - Logo JPG -->
     <link rel="icon" type="image/jpeg" href="<?= $base ?>/assets/img/logo.jpg">
-    <link rel="shortcut icon" href="<?= $base ?>/assets/img/logo.jpg">
+    <link rel="shortcut icon" href="<?= $base ?>/assets/img/logo1.png">
 
 <link rel="stylesheet" href="<?= $base ?>/assets/css/style.css?v=2"></head>
 <body>

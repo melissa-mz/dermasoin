@@ -637,8 +637,8 @@ button { font-family: var(--font-body); cursor: pointer; }
 
 .site-footer { background: #FFFFFF; color: var(--charbon); padding: 50px 0 40px; margin-top: 0; }.site-footer .container { max-width: 1320px; }
 .footer-frame {
-    background: #000000;
-    border: 1px solid #333333;
+    background: #2C2C2C;
+    border: 1px solid #444444;
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-soft);
     padding: 36px 32px 24px;
