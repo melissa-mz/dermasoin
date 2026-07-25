@@ -2,7 +2,12 @@
 $page_title = 'Produits';
 
 // ============================================
-// DÉMARRER LA SESSION UNE SEULE FOIS
+// CHARGER LA CONFIGURATION D'ABORD
+// ============================================
+require_once __DIR__ . '/../config/db.php';
+
+// ============================================
+// DÉMARRER LA SESSION
 // ============================================
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
@@ -13,8 +18,6 @@ if (!isset($_SESSION['admin_id'])) {
     header('Location: ' . BASE_URL . '/admin/login.php');
     exit;
 }
-
-require_once __DIR__ . '/../config/db.php';
 
 // ============================================
 // SUPPRESSION
@@ -80,8 +83,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'prix' => (float)$_POST['prix'],
         'prix_promo' => $_POST['prix_promo'] !== '' ? (float)$_POST['prix_promo'] : null,
         'stock' => (int)$_POST['stock'],
-        'en_vedette' => isset($_POST['en_vedette']) ? true : false,  // PostgreSQL BOOLEAN
-        'necessite_agrement' => isset($_POST['necessite_agrement']) ? true : false,  // PostgreSQL BOOLEAN
+        'en_vedette' => isset($_POST['en_vedette']) ? true : false,
+        'necessite_agrement' => isset($_POST['necessite_agrement']) ? true : false,
     ];
 
     try {
@@ -136,7 +139,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->execute($data);
         }
     } catch (PDOException $e) {
-        // Gérer l'erreur (slug dupliqué, etc.)
         die("Erreur lors de l'enregistrement : " . $e->getMessage());
     }
     
