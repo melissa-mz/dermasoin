@@ -1563,3 +1563,128 @@ button { font-family: var(--font-body); cursor: pointer; }
         max-height: 180px !important;
     }
 }
+/* ============================================
+   CHECKOUT - RESPONSIVE
+   ============================================ */
+
+/* Tablette */
+@media (max-width: 1024px) {
+    .checkout-grid {
+        gap: 30px !important;
+    }
+    .checkout-form-card {
+        padding: 28px 24px !important;
+    }
+}
+
+/* Mobile */
+@media (max-width: 900px) {
+    .checkout-grid {
+        grid-template-columns: 1fr !important;
+        gap: 24px !important;
+    }
+    
+    .checkout-form-card {
+        padding: 20px 16px !important;
+        order: 1 !important;
+    }
+    
+    .checkout-summary {
+        position: static !important;
+        order: 2 !important;
+        padding: 20px 16px !important;
+        margin-top: 0 !important;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+    }
+    
+    .form-group {
+        margin-bottom: 12px !important;
+    }
+    
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 10px 14px !important;
+        font-size: 0.85rem !important;
+    }
+    
+    .payment-options {
+        gap: 8px !important;
+    }
+    
+    .payment-option {
+        padding: 12px 14px !important;
+    }
+    
+    .payment-option .p-title {
+        font-size: 0.85rem !important;
+    }
+    
+    .payment-option .p-desc {
+        font-size: 0.7rem !important;
+    }
+    
+    .checkout-grid .btn {
+        padding: 12px 20px !important;
+        font-size: 0.75rem !important;
+    }
+    
+    .summary-box h3 {
+        font-size: 1.1rem !important;
+        margin-bottom: 14px !important;
+    }
+    
+    .summary-row {
+        font-size: 0.82rem !important;
+        padding: 6px 0 !important;
+    }
+    
+    .summary-row.total {
+        font-size: 1rem !important;
+        padding-top: 12px !important;
+        margin-top: 6px !important;
+    }
+}
+
+/* Petit mobile */
+@media (max-width: 600px) {
+    .checkout-grid {
+        gap: 16px !important;
+    }
+    
+    .checkout-form-card {
+        padding: 14px 12px !important;
+    }
+    
+    .checkout-summary {
+        padding: 14px 12px !important;
+    }
+    
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 8px 12px !important;
+        font-size: 0.8rem !important;
+    }
+    
+    .payment-option {
+        padding: 10px 12px !important;
+    }
+    
+    .checkout-grid .btn {
+        padding: 10px 16px !important;
+        font-size: 0.7rem !important;
+    }
+    
+    .summary-row {
+        font-size: 0.78rem !important;
+    }
+    
+    .summary-row.total {
+        font-size: 0.9rem !important;
+    }
+}
