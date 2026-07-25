@@ -17,8 +17,7 @@ $nav_categories = $pdo->query("SELECT * FROM categories ORDER BY ordre")->fetchA
     <link rel="icon" type="image/jpeg" href="<?= $base ?>/assets/img/logo.jpg">
     <link rel="shortcut icon" href="<?= $base ?>/assets/img/logo.jpg">
 
-    <link rel="stylesheet" href="<?= $base ?>/assets/css/style.css">
-</head>
+<link rel="stylesheet" href="<?= $base ?>/assets/css/style.css?v=2"></head>
 <body>
 
 <header class="site-header">
