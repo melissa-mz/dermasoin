@@ -43,9 +43,6 @@ $prix_unitaire = $p['prix_promo'] ?? $p['prix'];
                 </div>
             <?php endif; ?>
 
-            <div style="font-size:0.85rem;font-weight:600;color:var(--charbon);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.06em;">
-                <?= htmlspecialchars($p['description_courte']) ?>
-            </div>
             <h1><?= htmlspecialchars($p['nom']) ?></h1>
             
             <div style="margin:16px 0;">

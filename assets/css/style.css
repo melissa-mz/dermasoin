@@ -143,43 +143,33 @@ button { font-family: var(--font-body); cursor: pointer; }
     padding: 18px 24px;
     max-width: 1240px;
     margin: 0 auto;
-}.logo {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    font-family: 'Public Sans', 'Inter', 'Arial', sans-serif;
+}
+.logo {
+    font-family: 'Cormorant Garamond', 'Georgia', serif;
     font-weight: 700;
     font-size: 1.9rem;
-    letter-spacing: 0.03em;
     text-transform: uppercase;
-    color: var(--charbon);
     text-decoration: none;
-}
-@supports ((-webkit-background-clip: text) or (background-clip: text)) {
-   .logo {
+    letter-spacing: 0.04em;
     display: flex;
     align-items: center;
-    gap: 0px;
-    font-family: 'Cormorant Garamond', 'Georgia', serif;
-     font-weight: 900;
-    font-size: 2rem;
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
-    color: var(--charbon);
-    text-decoration: none;
+    gap: 12px;
+    flex-shrink: 0;
+    color: #1C1F1F;
+    background: none;
+    -webkit-background-clip: unset;
+    background-clip: unset;
+    -webkit-text-fill-color: unset;
 }
 .logo span {
-    color: var(--petrole);
-    font-weight: 400;
-    -webkit-text-fill-color: var(--petrole);
+    color: #0497A7;
 }
+.logo .logo-icon {
+    width: 90px !important;
+    height: 70px !important;
+    object-fit: contain;
+    margin: 0;
 }
-.logo-icon {
-    width: 80px !important;
-    height: 80px !important;
-    margin: 0 auto !important;
-}
-
 .main-nav { display: flex; gap: 32px; align-items: center; }
 .main-nav a {
     position: relative;

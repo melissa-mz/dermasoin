@@ -74,69 +74,59 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // ============================================
     // CORRECTION POUR POSTGRESQL (SUPABASE)
     // ============================================
-    // Les booléens en PostgreSQL : TRUE ou FALSE
     $en_vedette = isset($_POST['en_vedette']) && $_POST['en_vedette'] == 'on' ? 'TRUE' : 'FALSE';
     $necessite_agrement = isset($_POST['necessite_agrement']) && $_POST['necessite_agrement'] == 'on' ? 'TRUE' : 'FALSE';
 
-    // Données pour PostgreSQL
+    // Données de base (sans image)
     $data = [
         ':categorie_id' => !empty($_POST['categorie_id']) ? (int)$_POST['categorie_id'] : null,
         ':nom' => $nom,
         ':slug' => $slug,
         ':description' => trim($_POST['description']),
-        ':description_courte' => trim($_POST['description_courte']),
         ':prix' => (float)$_POST['prix'],
         ':prix_promo' => !empty($_POST['prix_promo']) ? (float)$_POST['prix_promo'] : null,
         ':stock' => (int)$_POST['stock'],
         ':en_vedette' => $en_vedette,
         ':necessite_agrement' => $necessite_agrement,
-        ':image_principale' => $image_principale,
     ];
 
     try {
         if ($id) {
-            // Mise à jour
+            // MISE À JOUR - Construction dynamique
+            $sql = "UPDATE produits SET 
+                categorie_id = :categorie_id,
+                nom = :nom,
+                slug = :slug,
+                description = :description,
+                prix = :prix,
+                prix_promo = :prix_promo,
+                stock = :stock,
+                en_vedette = :en_vedette,
+                necessite_agrement = :necessite_agrement";
+            
+            // Ajouter l'image si présente
             if ($image_principale) {
-                $sql = "UPDATE produits SET 
-                    categorie_id = :categorie_id,
-                    nom = :nom,
-                    slug = :slug,
-                    description = :description,
-                    description_courte = :description_courte,
-                    prix = :prix,
-                    prix_promo = :prix_promo,
-                    stock = :stock,
-                    en_vedette = :en_vedette,
-                    necessite_agrement = :necessite_agrement,
-                    image_principale = :image_principale
-                    WHERE id = :id";
-                $data[':id'] = $id;
-            } else {
-                $sql = "UPDATE produits SET 
-                    categorie_id = :categorie_id,
-                    nom = :nom,
-                    slug = :slug,
-                    description = :description,
-                    description_courte = :description_courte,
-                    prix = :prix,
-                    prix_promo = :prix_promo,
-                    stock = :stock,
-                    en_vedette = :en_vedette,
-                    necessite_agrement = :necessite_agrement
-                    WHERE id = :id";
-                $data[':id'] = $id;
+                $sql .= ", image_principale = :image_principale";
+                $data[':image_principale'] = $image_principale;
             }
+            
+            $sql .= " WHERE id = :id";
+            $data[':id'] = $id;
+            
             $stmt = $pdo->prepare($sql);
             $stmt->execute($data);
         } else {
-            // Insertion
+            // INSERTION
             $sql = "INSERT INTO produits (
-                categorie_id, nom, slug, description, description_courte, 
+                categorie_id, nom, slug, description, 
                 prix, prix_promo, stock, en_vedette, necessite_agrement, image_principale
             ) VALUES (
-                :categorie_id, :nom, :slug, :description, :description_courte,
+                :categorie_id, :nom, :slug, :description,
                 :prix, :prix_promo, :stock, :en_vedette, :necessite_agrement, :image_principale
             )";
+            
+            $data[':image_principale'] = $image_principale;
+            
             $stmt = $pdo->prepare($sql);
             $stmt->execute($data);
         }
@@ -195,9 +185,8 @@ if (isset($_GET['edit'])) {
                     </div>
                 <?php endif; ?>
             </div>
-            
             <div class="form-group">
-                <label>Description complète</label>
+                <label>Description</label>
                 <textarea name="description" rows="3"><?= htmlspecialchars($edit['description'] ?? '') ?></textarea>
             </div>
             <div class="form-row">
