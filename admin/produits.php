@@ -73,16 +73,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Construction des données (sans actifs)
     $data = [
-        'categorie_id' => $_POST['categorie_id'] ?: null,
+        'categorie_id' => !empty($_POST['categorie_id']) ? (int)$_POST['categorie_id'] : null,
         'nom' => $nom,
         'slug' => $slug,
         'description' => trim($_POST['description']),
         'description_courte' => trim($_POST['description_courte']),
         'prix' => (float)$_POST['prix'],
-        'prix_promo' => $_POST['prix_promo'] !== '' ? (float)$_POST['prix_promo'] : null,
+        'prix_promo' => !empty($_POST['prix_promo']) ? (float)$_POST['prix_promo'] : null,
         'stock' => (int)$_POST['stock'],
-        'en_vedette' => isset($_POST['en_vedette']) ? true : false,
-        'necessite_agrement' => isset($_POST['necessite_agrement']) ? true : false,
+        'en_vedette' => isset($_POST['en_vedette']) && $_POST['en_vedette'] == 'on' ? true : false,
+        'necessite_agrement' => isset($_POST['necessite_agrement']) && $_POST['necessite_agrement'] == 'on' ? true : false,
     ];
 
     try {
