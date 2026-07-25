@@ -71,23 +71,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    // Construction des données (sans actifs)
+    // ============================================
+    // CORRECTION POUR POSTGRESQL (SUPABASE)
+    // ============================================
+    // Les booléens en PostgreSQL : TRUE ou FALSE
+    $en_vedette = isset($_POST['en_vedette']) && $_POST['en_vedette'] == 'on' ? 'TRUE' : 'FALSE';
+    $necessite_agrement = isset($_POST['necessite_agrement']) && $_POST['necessite_agrement'] == 'on' ? 'TRUE' : 'FALSE';
+
+    // Données pour PostgreSQL
     $data = [
-        'categorie_id' => !empty($_POST['categorie_id']) ? (int)$_POST['categorie_id'] : null,
-        'nom' => $nom,
-        'slug' => $slug,
-        'description' => trim($_POST['description']),
-        'description_courte' => trim($_POST['description_courte']),
-        'prix' => (float)$_POST['prix'],
-        'prix_promo' => !empty($_POST['prix_promo']) ? (float)$_POST['prix_promo'] : null,
-        'stock' => (int)$_POST['stock'],
-        'en_vedette' => isset($_POST['en_vedette']) && $_POST['en_vedette'] == 'on' ? true : false,
-        'necessite_agrement' => isset($_POST['necessite_agrement']) && $_POST['necessite_agrement'] == 'on' ? true : false,
+        ':categorie_id' => !empty($_POST['categorie_id']) ? (int)$_POST['categorie_id'] : null,
+        ':nom' => $nom,
+        ':slug' => $slug,
+        ':description' => trim($_POST['description']),
+        ':description_courte' => trim($_POST['description_courte']),
+        ':prix' => (float)$_POST['prix'],
+        ':prix_promo' => !empty($_POST['prix_promo']) ? (float)$_POST['prix_promo'] : null,
+        ':stock' => (int)$_POST['stock'],
+        ':en_vedette' => $en_vedette,
+        ':necessite_agrement' => $necessite_agrement,
+        ':image_principale' => $image_principale,
     ];
 
     try {
         if ($id) {
-            // Mise à jour (sans actifs)
+            // Mise à jour
             if ($image_principale) {
                 $sql = "UPDATE produits SET 
                     categorie_id = :categorie_id,
@@ -102,8 +110,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     necessite_agrement = :necessite_agrement,
                     image_principale = :image_principale
                     WHERE id = :id";
-                $data['image_principale'] = $image_principale;
-                $data['id'] = $id;
+                $data[':id'] = $id;
             } else {
                 $sql = "UPDATE produits SET 
                     categorie_id = :categorie_id,
@@ -117,12 +124,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     en_vedette = :en_vedette,
                     necessite_agrement = :necessite_agrement
                     WHERE id = :id";
-                $data['id'] = $id;
+                $data[':id'] = $id;
             }
             $stmt = $pdo->prepare($sql);
             $stmt->execute($data);
         } else {
-            // Insertion (sans actifs)
+            // Insertion
             $sql = "INSERT INTO produits (
                 categorie_id, nom, slug, description, description_courte, 
                 prix, prix_promo, stock, en_vedette, necessite_agrement, image_principale
@@ -130,7 +137,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 :categorie_id, :nom, :slug, :description, :description_courte,
                 :prix, :prix_promo, :stock, :en_vedette, :necessite_agrement, :image_principale
             )";
-            $data['image_principale'] = $image_principale;
             $stmt = $pdo->prepare($sql);
             $stmt->execute($data);
         }
