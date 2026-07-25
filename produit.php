@@ -54,17 +54,12 @@ $prix_unitaire = $p['prix_promo'] ?? $p['prix'];
                 <?php endforeach; ?>
             </div>
             
-            <!-- PRIX UNITAIRE -->
-            <div style="font-size:1.8rem;font-weight:700;font-family:'Inter','Arial',sans-serif;color:#1C1F1F;margin-bottom:6px;background:var(--creme-moyen);padding:12px 20px;border-radius:var(--radius-lg);display:inline-block;">
+            <!-- PRIX UNITAIRE EN CADRE -->
+            <div style="font-size:1.8rem;font-weight:700;font-family:'Inter','Arial',sans-serif;color:#1C1F1F;margin-bottom:16px;background:var(--creme-moyen);padding:12px 20px;border-radius:var(--radius-lg);display:inline-block;">
                 <?php if ($p['prix_promo']): ?>
                     <span style="text-decoration:line-through;color:var(--charbon-soft);font-weight:400;font-size:1.2rem;margin-right:10px;"><?= prix_format($p['prix']) ?></span>
                 <?php endif; ?>
                 <span id="prix-unitaire" data-prix="<?= $prix_unitaire ?>"><?= prix_format($prix_unitaire) ?></span>
-            </div>
-
-            <!-- PRIX TOTAL SELON QUANTITÉ -->
-            <div style="font-size:0.95rem;color:var(--charbon-soft);margin-bottom:16px;">
-                Total : <span id="prix-total" style="font-weight:700;font-size:1.3rem;color:var(--charbon);"><?= prix_format($prix_unitaire) ?></span>
             </div>
 
             <p style="color:var(--charbon);margin-bottom:30px;line-height:1.8;"><?= nl2br(htmlspecialchars($p['description'])) ?></p>
@@ -79,12 +74,24 @@ $prix_unitaire = $p['prix_promo'] ?? $p['prix'];
                 <form method="post" action="<?= BASE_URL ?>/panier.php" style="display:flex;gap:14px;align-items:center;flex-wrap:wrap;">
                     <input type="hidden" name="produit_id" value="<?= $p['id'] ?>">
                     <input type="hidden" name="action" value="ajouter">
-                    <div class="qty-control">
-                        <button type="button" onclick="updateQuantite(-1)">−</button>
-                        <input type="number" name="quantite" id="quantite-input" value="1" min="1" max="<?= $p['stock'] ?>">
-                        <button type="button" onclick="updateQuantite(1)">+</button>
+                    
+                    <!-- QUANTITÉ AVEC + ET - -->
+                    <div style="display:flex;align-items:center;gap:10px;border:1px solid var(--sable);border-radius:var(--radius-lg);padding:4px 8px;background:#FFFFFF;">
+                        <button type="button" onclick="updateQuantite(-1)" style="background:none;border:none;font-size:1.2rem;font-weight:700;color:var(--charbon);cursor:pointer;padding:4px 10px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:var(--radius);transition:background 0.2s ease;">
+                            −
+                        </button>
+                        <input type="number" name="quantite" id="quantite-input" value="1" min="1" max="<?= $p['stock'] ?>" style="width:44px;text-align:center;border:none;font-size:1.1rem;font-weight:600;color:var(--charbon);background:transparent;padding:4px 0;">
+                        <button type="button" onclick="updateQuantite(1)" style="background:none;border:none;font-size:1.2rem;font-weight:700;color:var(--charbon);cursor:pointer;padding:4px 10px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:var(--radius);transition:background 0.2s ease;">
+                            +
+                        </button>
                     </div>
-                    <button type="submit" class="btn btn-primary">Ajouter au panier</button>
+
+                    <!-- TOTAL QUI CHANGE DYNAMIQUEMENT -->
+                    <div style="font-size:1.1rem;font-weight:700;color:var(--petrole);font-family:'Inter','Arial',sans-serif;">
+                        <span id="prix-total"><?= prix_format($prix_unitaire) ?></span>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" style="margin-left:auto;">Ajouter au panier</button>
                 </form>
             <?php endif; ?>
         </div>
@@ -114,26 +121,32 @@ $prix_unitaire = $p['prix_promo'] ?? $p['prix'];
     .container[style*="display:grid"] h1 {
         font-size: 1.6rem !important;
     }
-    .container[style*="display:grid"] .prix {
-        font-size: 1.4rem !important;
-    }
-    .container[style*="display:grid"] form {
-        justify-content: center !important;
-    }
-    .container[style*="display:grid"] .badge-actif {
-        display: inline-block;
-    }
     .container[style*="display:grid"] > div:last-child p {
         text-align: left;
     }
     .container[style*="display:grid"] .alert {
         text-align: left;
     }
+    .container[style*="display:grid"] form {
+        justify-content: center !important;
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        gap: 10px !important;
+    }
+    .container[style*="display:grid"] form .btn {
+        margin-left: 0 !important;
+        width: 100% !important;
+        justify-content: center !important;
+    }
+    .container[style*="display:grid"] .badge-actif {
+        display: inline-block;
+    }
     .container[style*="display:grid"] .qty-control {
         justify-content: center;
     }
-    .qty-control {
-        display: inline-flex !important;
+    .container[style*="display:grid"] .btn {
+        width: 100% !important;
+        justify-content: center !important;
     }
 }
 
@@ -157,6 +170,7 @@ $prix_unitaire = $p['prix_promo'] ?? $p['prix'];
     .container[style*="display:grid"] form {
         flex-direction: column !important;
         align-items: stretch !important;
+        gap: 10px !important;
     }
     .container[style*="display:grid"] form .qty-control {
         align-self: center !important;
@@ -165,6 +179,11 @@ $prix_unitaire = $p['prix_promo'] ?? $p['prix'];
     .container[style*="display:grid"] form .btn {
         width: 100% !important;
         justify-content: center !important;
+        margin-left: 0 !important;
+    }
+    .container[style*="display:grid"] form .prix-total {
+        text-align: center !important;
+        font-size: 1.2rem !important;
     }
     .qty-control {
         display: inline-flex !important;
