@@ -1,161 +1,249 @@
 <?php
-$page_title = 'Boutique';
 require_once __DIR__ . '/includes/header.php';
 
-$categories = $pdo->query("SELECT * FROM categories ORDER BY ordre")->fetchAll();
+$slug = $_GET['slug'] ?? '';
+$stmt = $pdo->prepare("SELECT * FROM produits WHERE slug = ? AND actif = TRUE");
+$stmt->execute([$slug]);
+$p = $stmt->fetch();
 
-// Récupérer la catégorie depuis l'URL
-$cat_slug = $_GET['cat'] ?? '';
-
-// ============================================
-// PAGINATION
-// ============================================
-$produits_par_page = 9;
-$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-if ($page < 1) $page = 1;
-$offset = ($page - 1) * $produits_par_page;
-
-// Construire la requête SQL avec filtre si catégorie est présente
-$sql_count = "SELECT COUNT(*) FROM produits WHERE actif = TRUE";
-$sql = "SELECT * FROM produits WHERE actif = TRUE";
-$params = [];
-
-if (!empty($cat_slug)) {
-    $stmt = $pdo->prepare("SELECT id FROM categories WHERE slug = ?");
-    $stmt->execute([$cat_slug]);
-    $categorie = $stmt->fetch();
-    
-    if ($categorie) {
-        $sql_count .= " AND categorie_id = " . (int)$categorie['id'];
-        $sql .= " AND categorie_id = " . (int)$categorie['id'];
-    }
+if (!$p) {
+    echo '<div class="empty-state">Produit introuvable. <a href="'.BASE_URL.'/boutique.php">Retour à la boutique</a></div>';
+    require_once __DIR__ . '/includes/footer.php';
+    exit;
 }
 
-// Compter le nombre total de produits
-$total_produits = $pdo->query($sql_count)->fetchColumn();
-$total_pages = ceil($total_produits / $produits_par_page);
-
-// Récupérer les produits de la page avec LIMIT et OFFSET
-$sql .= " ORDER BY created_at DESC LIMIT " . (int)$produits_par_page . " OFFSET " . (int)$offset;
-$produits = $pdo->query($sql)->fetchAll();
-
-// Récupérer le nom de la catégorie pour l'affichage
-$categorie_nom = 'Tous nos produits';
-if (!empty($cat_slug)) {
-    $stmt = $pdo->prepare("SELECT nom FROM categories WHERE slug = ?");
-    $stmt->execute([$cat_slug]);
-    $cat = $stmt->fetch();
-    if ($cat) {
-        $categorie_nom = $cat['nom'];
-    }
-}
+$page_title = $p['nom'];
+$actifs_list = array_filter(array_map('trim', explode(',', $p['actifs'] ?? '')));
 ?>
 
 <section class="section">
-    <div class="container">
-        <div class="section-head">
-            <div>
-                <span class="eyebrow">Boutique</span>
-                <h2><?= htmlspecialchars($categorie_nom) ?></h2>
-                <p style="color:var(--charbon-soft);font-size:0.85rem;margin-top:4px;">
-                    <?= $total_produits ?> produit<?= $total_produits > 1 ? 's' : '' ?> disponibles
-                </p>
-            </div>
-            <?php if (!empty($cat_slug)): ?>
-                <a href="<?= BASE_URL ?>/boutique.php" class="btn btn-outline" style="padding:8px 20px;font-size:0.75rem;">Voir tous les produits</a>
+    <div class="container produit-detail-container">
+        <!-- Image -->
+        <div class="produit-detail-image">
+            <?php if (!empty($p['image_principale'])): ?>
+                <img src="<?= BASE_URL ?>/assets/img/products/<?= htmlspecialchars($p['image_principale']) ?>" 
+                     alt="<?= htmlspecialchars($p['nom']) ?>">
+            <?php else: ?>
+                <span style="font-size:3rem;padding:80px;color:var(--charbon-soft);">Pas d'image</span>
             <?php endif; ?>
         </div>
-
-        <div style="display:flex;justify-content:flex-end;align-items:center;flex-wrap:wrap;gap:16px;margin-bottom:36px;">
-            <div style="position:relative;flex-shrink:0;">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                     style="position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--charbon-soft);pointer-events:none;">
-                    <circle cx="11" cy="11" r="8"/>
-                    <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-                </svg>
-                <input type="text" id="recherche-live" placeholder="Rechercher un produit..." autocomplete="off"
-                       style="padding:12px 18px 12px 42px;border:1px solid var(--sable);border-radius:100px;font-family:var(--font-body);font-size:0.9rem;width:320px;max-width:70vw;background:var(--blanc);">
+        
+        <!-- Infos produit -->
+        <div class="produit-detail-info">
+            <div class="produit-detail-cat">
+                <?= htmlspecialchars($p['description_courte']) ?>
             </div>
-        </div>
-
-        <div id="produits-grid" class="produits-grid">
-            <?php if (count($produits) > 0): ?>
-                <?php foreach ($produits as $p): ?>
-                <?php include __DIR__ . '/includes/produit-card.php'; ?>
+            <h1><?= htmlspecialchars($p['nom']) ?></h1>
+            
+            <div class="produit-detail-actifs">
+                <?php foreach ($actifs_list as $actif): ?>
+                    <span class="badge-actif"><?= htmlspecialchars($actif) ?></span>
                 <?php endforeach; ?>
+            </div>
+            
+            <div class="produit-detail-prix">
+                <?php if ($p['prix_promo']): ?>
+                    <span class="prix-barre"><?= prix_format($p['prix']) ?></span>
+                <?php endif; ?>
+                <?= prix_format($p['prix_promo'] ?? $p['prix']) ?>
+            </div>
+            
+            <p class="produit-detail-desc"><?= nl2br(htmlspecialchars($p['description'])) ?></p>
+
+            <?php if (!empty($p['necessite_agrement'])): ?>
+                <div class="alert alert-pro">
+                    Produit réservé aux professionnels de santé. Un numéro d'agrément ou une carte professionnelle sera demandé lors de la commande.
+                </div>
+            <?php endif; ?>
+
+            <?php if ($p['stock'] > 0): ?>
+                <div class="produit-detail-stock">
+                    En stock (<?= $p['stock'] ?> unités disponibles)
+                </div>
+                <form method="post" action="<?= BASE_URL ?>/panier.php" class="produit-detail-form">
+                    <input type="hidden" name="produit_id" value="<?= $p['id'] ?>">
+                    <input type="hidden" name="action" value="ajouter">
+                    <div class="qty-control">
+                        <button type="button" onclick="this.nextElementSibling.stepDown()">−</button>
+                        <input type="number" name="quantite" value="1" min="1" max="<?= $p['stock'] ?>">
+                        <button type="button" onclick="this.previousElementSibling.stepUp()">+</button>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Ajouter au panier</button>
+                </form>
             <?php else: ?>
-                <div class="empty-state" style="grid-column:1/-1;">
-                    Aucun produit dans cette catégorie.
+                <div class="produit-detail-stock rupture">
+                    Rupture de stock
                 </div>
             <?php endif; ?>
         </div>
-
-        <div id="aucun-resultat" class="empty-state" style="display:none;">
-            Aucun produit ne correspond à votre recherche.
-        </div>
-
-        <!-- ============================================ -->
-        <!-- PAGINATION -->
-        <!-- ============================================ -->
-        <?php if ($total_pages > 1): ?>
-        <div class="pagination">
-            <?php if ($page > 1): ?>
-            <a href="?page=<?= $page - 1 ?><?= $cat_slug ? '&cat=' . urlencode($cat_slug) : '' ?>" 
-               class="btn btn-outline">
-                ‹ Précédent
-            </a>
-            <?php endif; ?>
-
-            <?php for ($i = 1; $i <= $total_pages; $i++): ?>
-                <?php if ($i === $page): ?>
-                    <span class="btn btn-primary" style="cursor:default;">
-                        <?= $i ?>
-                    </span>
-                <?php else: ?>
-                    <a href="?page=<?= $i ?><?= $cat_slug ? '&cat=' . urlencode($cat_slug) : '' ?>" 
-                       class="btn btn-outline">
-                        <?= $i ?>
-                    </a>
-                <?php endif; ?>
-            <?php endfor; ?>
-
-            <?php if ($page < $total_pages): ?>
-            <a href="?page=<?= $page + 1 ?><?= $cat_slug ? '&cat=' . urlencode($cat_slug) : '' ?>" 
-               class="btn btn-outline">
-                Suivant ›
-            </a>
-            <?php endif; ?>
-        </div>
-        <?php endif; ?>
     </div>
 </section>
 
-<script>
-(function() {
-    const input = document.getElementById('recherche-live');
-    const cards = Array.from(document.querySelectorAll('#produits-grid .produit-card'));
-    const grid = document.getElementById('produits-grid');
-    const aucunResultat = document.getElementById('aucun-resultat');
+<style>
+/* ============================================
+   PRODUIT - RESPONSIVE SANS ICÔNE
+   ============================================ */
+.produit-detail-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+}
 
-    function normaliser(str) {
-        return str.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+.produit-detail-image {
+    border-radius: var(--radius-lg);
+    background: #EDE5D8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 0;
+}
+.produit-detail-image img {
+    width: 100%;
+    height: auto;
+    max-height: 600px;
+    object-fit: contain;
+    display: block;
+    border-radius: var(--radius-lg);
+}
+
+.produit-detail-cat {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--charbon);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+.produit-detail-info h1 {
+    margin-bottom: 16px;
+}
+.produit-detail-actifs {
+    margin: 16px 0;
+}
+.produit-detail-prix {
+    font-size: 1.6rem;
+    font-weight: 700;
+    font-family: var(--font-display);
+    color: var(--petrole);
+    margin-bottom: 24px;
+}
+.produit-detail-desc {
+    color: var(--charbon);
+    margin-bottom: 30px;
+    line-height: 1.8;
+}
+.alert-pro {
+    background: #FFF3E0;
+    color: #B26A00;
+    padding: 14px 18px;
+    border-radius: var(--radius);
+    font-size: 0.88rem;
+    margin-bottom: 20px;
+}
+.produit-detail-stock {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #1a6b2a;
+    margin-bottom: 20px;
+}
+.produit-detail-stock.rupture {
+    color: #E53E3E;
+}
+.produit-detail-form {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+/* ============================================
+   RESPONSIVE PRODUIT
+   ============================================ */
+@media (max-width: 1024px) {
+    .produit-detail-container {
+        gap: 40px;
     }
+    .produit-detail-image img {
+        max-height: 450px;
+    }
+}
 
-    input.addEventListener('input', function() {
-        const q = normaliser(input.value.trim());
-        let visibles = 0;
+@media (max-width: 900px) {
+    .produit-detail-container {
+        grid-template-columns: 1fr !important;
+        gap: 30px !important;
+    }
+    .produit-detail-image {
+        max-width: 400px;
+        margin: 0 auto;
+        width: 100%;
+    }
+    .produit-detail-image img {
+        max-height: 350px;
+    }
+    .produit-detail-info {
+        text-align: center;
+    }
+    .produit-detail-info h1 {
+        font-size: 1.6rem;
+    }
+    .produit-detail-prix {
+        font-size: 1.4rem;
+    }
+    .produit-detail-form {
+        justify-content: center;
+    }
+    .produit-detail-actifs {
+        justify-content: center;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .alert-pro {
+        text-align: left;
+    }
+    .produit-detail-desc {
+        text-align: left;
+    }
+}
 
-        cards.forEach(function(card) {
-            const nom = normaliser(card.getAttribute('data-nom') || '');
-            const correspond = q === '' || nom.startsWith(q);
-            card.style.display = correspond ? '' : 'none';
-            if (correspond) visibles++;
-        });
-
-        aucunResultat.style.display = visibles === 0 ? 'block' : 'none';
-        grid.style.display = visibles === 0 ? 'none' : 'grid';
-    });
-})();
-</script>
+@media (max-width: 600px) {
+    .produit-detail-container {
+        gap: 20px !important;
+        padding: 0 12px;
+    }
+    .produit-detail-image {
+        max-width: 280px;
+    }
+    .produit-detail-image img {
+        max-height: 280px;
+    }
+    .produit-detail-info h1 {
+        font-size: 1.3rem;
+    }
+    .produit-detail-prix {
+        font-size: 1.2rem;
+    }
+    .produit-detail-desc {
+        font-size: 0.9rem;
+    }
+    .produit-detail-form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .produit-detail-form .qty-control {
+        align-self: center;
+    }
+    .produit-detail-form .btn {
+        width: 100%;
+        justify-content: center;
+    }
+    .produit-detail-stock {
+        font-size: 0.95rem;
+        text-align: center;
+    }
+}
+</style>
 
 <?php require_once __DIR__ . '/includes/footer.php'; ?>
