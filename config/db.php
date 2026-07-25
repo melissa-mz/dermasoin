@@ -25,7 +25,7 @@ if ($database_url) {
     }
     
     // ⚠️ CORRECTION : Définir BASE_URL pour Render
-    define('BASE_URL', 'https://dermasoin.onrender.com');
+   define('BASE_URL', 'https://dermasoin-sf2q.onrender.com');
     
 } else {
     // Connexion locale MySQL (sur Wampserver)
