@@ -24,8 +24,10 @@ if ($database_url) {
         die("Erreur de connexion PostgreSQL : " . $e->getMessage());
     }
     
-    // ⚠️ CORRECTION : Définir BASE_URL pour Render
-   define('BASE_URL', 'https://dermasoin-sf2q.onrender.com');
+    // BASE_URL dynamique pour Render (s'adapte automatiquement à ton lien actuel)
+    $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http";
+    $host_name = $_SERVER['HTTP_HOST'];
+    define('BASE_URL', $protocol . "://" . $host_name);
     
 } else {
     // Connexion locale MySQL (sur Wampserver)
