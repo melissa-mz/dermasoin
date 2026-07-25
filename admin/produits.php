@@ -195,10 +195,7 @@ if (isset($_GET['edit'])) {
                     </div>
                 <?php endif; ?>
             </div>
-            <div class="form-group">
-                <label>Description courte</label>
-                <input type="text" name="description_courte" value="<?= htmlspecialchars($edit['description_courte'] ?? '') ?>">
-            </div>
+            
             <div class="form-group">
                 <label>Description complète</label>
                 <textarea name="description" rows="3"><?= htmlspecialchars($edit['description'] ?? '') ?></textarea>

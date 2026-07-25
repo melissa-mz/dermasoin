@@ -14,8 +14,8 @@ $nav_categories = $pdo->query("SELECT * FROM categories ORDER BY ordre")->fetchA
     <meta name="description" content="DermaSoin — Produits de médecine esthétique et soins premium, livraison partout en Algérie.">
 
     <!-- FAVICON - Logo JPG -->
-    <link rel="icon" type="image/jpeg" href="<?= $base ?>/assets/img/logo.jpg">
-    <link rel="shortcut icon" href="<?= $base ?>/assets/img/logo1.png">
+    <link rel="icon" type="image/jpeg" href="<?= $base ?>/assets/img/logo1.jpg">
+    <link rel="shortcut icon" href="<?= $base ?>/assets/img/logo1.jpg">
 
 <link rel="stylesheet" href="<?= $base ?>/assets/css/style.css?v=2"></head>
 <body>
@@ -23,7 +23,7 @@ $nav_categories = $pdo->query("SELECT * FROM categories ORDER BY ordre")->fetchA
 <header class="site-header">
     <div class="header-inner">
         <a href="<?= $base ?>/index.php" class="logo">
-            <img src="<?= $base ?>/assets/img/logo.jpg" alt="DermaSoin" class="logo-icon" width="80" height="80">
+<img src="<?= $base ?>/assets/img/logo1.jpg" alt="DermaSoin" class="logo-icon" style="width: auto; height: auto; max-width: none; max-height: none;">
             Derma<span>Soin</span>
         </a>
 

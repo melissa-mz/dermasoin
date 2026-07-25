@@ -94,4 +94,88 @@ $vedettes = $pdo->query("SELECT * FROM produits WHERE actif = TRUE ORDER BY crea
     </div>
 </section>
 
+<!-- ============================================
+   SECTION MARQUES - SLIDER SANS BORDURE
+   ============================================ -->
+<!-- ============================================
+   SECTION MARQUES - SLIDER SANS BORDURE
+   ============================================ -->
+<section class="section marques-slider-section">
+    <div class="container">
+        <div class="section-head" style="text-align: center; display: block;">
+            <span class="eyebrow">Nos Partenaires</span>
+            <h2>Marques <span class="accent-emeraude">partenaires</span></h2>
+        </div>
+
+        <div class="marques-slider-wrapper">
+            <div class="marques-slider" id="marquesSlider">
+                <?php for ($i = 1; $i <= 5; $i++): ?>
+                <div class="marque-slide">
+                    <img src="<?= BASE_URL ?>/assets/img/marques/img<?= $i ?>.jpeg" alt="Marque <?= $i ?>">
+                </div>
+                <?php endfor; ?>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- JavaScript du slider - Drag to scroll -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const slider = document.querySelector('.marques-slider');
+    
+    if (slider) {
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        // Mouse events
+        slider.addEventListener('mousedown', (e) => {
+            isDown = true;
+            slider.style.cursor = 'grabbing';
+            startX = e.pageX - slider.offsetLeft;
+            scrollLeft = slider.scrollLeft;
+            slider.classList.add('dragging');
+        });
+
+        slider.addEventListener('mouseleave', () => {
+            isDown = false;
+            slider.style.cursor = 'grab';
+            slider.classList.remove('dragging');
+        });
+
+        slider.addEventListener('mouseup', () => {
+            isDown = false;
+            slider.style.cursor = 'grab';
+            slider.classList.remove('dragging');
+        });
+
+        slider.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - slider.offsetLeft;
+            const walk = (x - startX) * 1.5;
+            slider.scrollLeft = scrollLeft - walk;
+        });
+
+        // Touch events pour mobile
+        slider.addEventListener('touchstart', (e) => {
+            isDown = true;
+            startX = e.touches[0].pageX - slider.offsetLeft;
+            scrollLeft = slider.scrollLeft;
+        });
+
+        slider.addEventListener('touchmove', (e) => {
+            if (!isDown) return;
+            const x = e.touches[0].pageX - slider.offsetLeft;
+            const walk = (x - startX) * 1.5;
+            slider.scrollLeft = scrollLeft - walk;
+        });
+
+        slider.addEventListener('touchend', () => {
+            isDown = false;
+        });
+    }
+});
+</script>
+
 <?php require_once __DIR__ . '/includes/footer.php'; ?>

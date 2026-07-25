@@ -51,18 +51,16 @@ body {
     height: 1px;
     background: linear-gradient(90deg, transparent 0%, rgba(4,151,167,0.14) 20%, rgba(4,151,167,0.20) 50%, rgba(4,151,167,0.14) 80%, transparent 100%);
 }
-
-/* ✅ Logo identique au site public */
 .admin-navbar .logo {
-    font-family: 'Bodoni Moda', 'Georgia', serif;
+    font-family: 'Cormorant Garamond', 'Georgia', serif;
+    font-weight: 700;
     font-size: 1.9rem;
-    font-weight: 800;
+    text-transform: uppercase;
     text-decoration: none;
     letter-spacing: 0.04em;
     display: flex;
     align-items: center;
     gap: 12px;
-    text-transform: uppercase;
     flex-shrink: 0;
     color: #1C1F1F;
     background: none;
@@ -70,9 +68,10 @@ body {
     background-clip: unset;
     -webkit-text-fill-color: unset;
 }
-.admin-navbar .logo::before {
-    content: none;
+.admin-navbar .logo span {
+    color: #0497A7;
 }
+
 .admin-navbar .logo .logo-icon {
     color: #0497A7;
     flex-shrink: 0;
@@ -938,5 +937,51 @@ body {
     .admin-logout {
         padding: 3px 8px !important;
         font-size: 0.55rem !important;
+    }
+}
+/* ============================================================
+   ADMIN NAVBAR - FIXED AU SCROLL
+   ============================================================ */
+
+.admin-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: #FFFFFF;
+    padding: 14px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.3s ease;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+
+.admin-navbar.scrolled {
+    box-shadow: 0 4px 24px rgba(4, 151, 167, 0.10);
+}
+
+/* Ajuster le padding du main pour compenser la navbar fixe */
+.admin-shell {
+    padding-top: 80px; /* Hauteur de la navbar */
+}
+
+/* Ajustement responsive */
+@media (max-width: 768px) {
+    .admin-navbar {
+        padding: 10px 16px !important;
+    }
+    .admin-shell {
+        padding-top: 70px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .admin-navbar {
+        padding: 6px 10px !important;
+    }
+    .admin-shell {
+        padding-top: 60px !important;
     }
 }
