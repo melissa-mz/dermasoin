@@ -3,6 +3,9 @@
 // CONNEXION À LA BASE DE DONNÉES
 // ============================================
 
+// Récupérer le mot de passe depuis .env
+$supabase_password = getenv('SUPABASE_PASSWORD') ?: 'dermasoin2026';
+
 // Détecter l'environnement
 $is_local = (strpos($_SERVER['SERVER_NAME'] ?? '', 'localhost') !== false || 
              strpos($_SERVER['SERVER_NAME'] ?? '', '127.0.0.1') !== false);
@@ -36,7 +39,7 @@ if ($is_local) {
     // ============================================
     // PRODUCTION : Supabase (Render)
     // ============================================
-    $database_url = 'postgresql://postgres.blquaulqgsifbeuvoegs:dermasoin2026@aws-0-eu-west-1.pooler.supabase.com:5432/postgres';
+    $database_url = "postgresql://postgres.blquaulqgsifbeuvoegs:$supabase_password@aws-0-eu-west-1.pooler.supabase.com:5432/postgres";
 
     $url = parse_url($database_url);
     $host = $url["host"] ?? '';
