@@ -159,15 +159,13 @@ button { font-family: var(--font-body); cursor: pointer; }
 .logo span {
     color: #0497A7;
 }
-.logo .logo-icon {
-    width: 145px !important;
-    height: auto !important;
-    max-height: 105px !important;
-    object-fit: contain;
-    margin: 0;
-    display: block;
-    flex-shrink: 0;
-}
+  .logo .logo-icon {
+        width: 100px !important;
+        height: auto !important;
+        max-height: 70px !important;
+        object-fit: contain;
+        margin: 0 auto !important;
+    }
 .main-nav { display: flex; gap: 32px; align-items: center; }
 .main-nav a {
     position: relative;
