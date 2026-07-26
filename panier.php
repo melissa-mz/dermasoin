@@ -52,7 +52,7 @@ $total = panier_total($pdo);
                                 <a href="<?= BASE_URL ?>/produit.php?slug=<?= $pr['slug'] ?>"><?= htmlspecialchars($pr['nom']) ?></a>
                             </div>
                         </td>
-                        <td data-label="Prix"><?= prix_format($item['prix_unitaire']) ?></td>
+                        <td data-label="Prix" style="font-weight:600;color:#1C1F1F;font-family:'Inter','Arial',sans-serif;"><?= prix_format($item['prix_unitaire']) ?></td>
                         <td data-label="Quantité">
                             <form method="post" style="display:flex;align-items:center;gap:8px;">
                                 <input type="hidden" name="produit_id" value="<?= $pr['id'] ?>">
@@ -64,7 +64,7 @@ $total = panier_total($pdo);
                                 </div>
                             </form>
                         </td>
-                        <td data-label="Sous-total"><?= prix_format($item['sous_total']) ?></td>
+                        <td data-label="Sous-total" style="font-weight:600;color:#1C1F1F;font-family:'Inter','Arial',sans-serif;"><?= prix_format($item['sous_total']) ?></td>
                         <td data-label="">
                             <form method="post">
                                 <input type="hidden" name="produit_id" value="<?= $pr['id'] ?>">
@@ -79,10 +79,9 @@ $total = panier_total($pdo);
 
             <div class="summary-box cart-summary">
                 <h3 style="margin-bottom:20px;">Résumé</h3>
-                <div class="summary-row"><span>Sous-total</span><span><?= prix_format($total) ?></span></div>
+                <div class="summary-row"><span>Sous-total</span><span style="font-weight:600;color:#1C1F1F;font-family:'Inter','Arial',sans-serif;"><?= prix_format($total) ?></span></div>
                 <div class="summary-row"><span>Livraison</span><span>Calculée à l'étape suivante</span></div>
-                <div class="summary-row total"><span>Total</span><span><?= prix_format($total) ?></span></div>
-                <a href="<?= BASE_URL ?>/commande.php" class="btn btn-primary btn-block" style="margin-top:20px;">Passer la commande</a>
+<div class="summary-row total"><span style="font-weight:700;color:#1C1F1F;font-family:'Inter','Arial',sans-serif;">Total</span><span style="font-weight:700;color:#1C1F1F;font-family:'Inter','Arial',sans-serif;font-size:1.2rem;"><?= prix_format($total) ?></span></div>                <a href="<?= BASE_URL ?>/commande.php" class="btn btn-primary btn-block" style="margin-top:20px;">Passer la commande</a>
             </div>
         </div>
         <?php endif; ?>
