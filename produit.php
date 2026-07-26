@@ -34,9 +34,9 @@ $prix_unitaire = $p['prix_promo'] ?? $p['prix'];
         <div>
             <!-- STOCK / RUPTURE EN HAUT -->
             <?php if ($p['stock'] > 0): ?>
-                <div style="font-weight:700;font-size:0.9rem;color:#1a6b2a;margin-bottom:12px;background:rgba(26,107,42,0.08);padding:6px 14px;border-radius:20px;display:inline-block;">
-                    En stock (<?= $p['stock'] ?> unités)
-                </div>
+               <div style="font-weight:700;font-size:0.9rem;color:#1a6b2a;margin-bottom:12px;background:rgba(26,107,42,0.08);padding:6px 14px;border-radius:20px;display:inline-block;">
+    En stock
+</div>
             <?php else: ?>
                 <div style="font-weight:700;font-size:0.9rem;color:#E53E3E;margin-bottom:12px;background:rgba(229,62,62,0.08);padding:6px 14px;border-radius:20px;display:inline-block;">
                     Rupture de stock
