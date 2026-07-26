@@ -16,8 +16,8 @@ if ($page < 1) $page = 1;
 $offset = ($page - 1) * $produits_par_page;
 
 // Construire la requête SQL avec filtre si catégorie est présente
-$sql_count = "SELECT COUNT(*) FROM produits WHERE actif = TRUE";
-$sql = "SELECT * FROM produits WHERE actif = TRUE";
+$sql_count = "SELECT COUNT(*) FROM produits WHERE actif = 1";
+$sql = "SELECT * FROM produits WHERE actif = 1";
 $params = [];
 
 if (!empty($cat_slug)) {
