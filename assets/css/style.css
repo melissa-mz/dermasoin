@@ -807,7 +807,11 @@ button { font-family: var(--font-body); cursor: pointer; }
         font-weight: 700 !important;
         letter-spacing: 0.08em !important;
     }
-   
+   .logo .logo-icon {
+    width: 135px !important;
+    height: auto !important;
+    max-height: 90px !important;
+}
     
     .menu-toggle {
         display: flex !important;
