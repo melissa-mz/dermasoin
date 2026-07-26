@@ -4,14 +4,14 @@ require_once __DIR__ . '/includes/header.php';
 
 $categories = $pdo->query("
     SELECT c.*,
-        COALESCE(c.image, (SELECT p.image_principale FROM produits p WHERE p.categorie_id = c.id AND p.image_principale IS NOT NULL AND p.actif = TRUE ORDER BY p.created_at DESC LIMIT 1)) AS img,
-        (SELECT COUNT(*) FROM produits p WHERE p.categorie_id = c.id AND p.actif = TRUE) AS nb_produits
+        COALESCE(c.image, (SELECT p.image_principale FROM produits p WHERE p.categorie_id = c.id AND p.image_principale IS NOT NULL AND p.actif = true ORDER BY p.created_at DESC LIMIT 1)) AS img,
+        (SELECT COUNT(*) FROM produits p WHERE p.categorie_id = c.id AND p.actif = true) AS nb_produits
     FROM categories c
     ORDER BY c.ordre
 ")->fetchAll();
 
 // 🔥 MODIFICATION : LIMIT 3 → LIMIT 4 (4 produits = 2 lignes de 2 sur mobile)
-$vedettes = $pdo->query("SELECT * FROM produits WHERE actif = TRUE ORDER BY created_at DESC LIMIT 6")->fetchAll();
+$vedettes = $pdo->query("SELECT * FROM produits WHERE actif = true ORDER BY created_at DESC LIMIT 6")->fetchAll();
 ?>
 
 <section class="hero">
