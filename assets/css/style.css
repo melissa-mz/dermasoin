@@ -81,12 +81,11 @@ html { scroll-behavior: smooth; }
 body {
     margin: 0;
     font-family: var(--font-body);
-    background: #FFFFFF;
+    background: #FFFFFF !important;
     color: var(--charbon);
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     padding-top: 0;
-
 }
 
 h1, h2, h3, h4 {
@@ -128,9 +127,11 @@ button { font-family: var(--font-body); cursor: pointer; }
 .site-header {
     position: relative;
     z-index: 100;
-    background: #FFFFFF;
+    background: #FFFFFF !important;
 }
 .header-inner {
+        background: #FFFFFF !important;
+
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -346,7 +347,7 @@ button { font-family: var(--font-body); cursor: pointer; }
     position: relative;
     padding: 0px 0 30px 0; /* ← Plus de padding en haut */
     overflow: hidden;
-    background: #FAFAFA;
+    background: #FFFFFF !important;
     display: flex;
     align-items: center;
     min-height: 340px;
