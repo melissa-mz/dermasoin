@@ -36,6 +36,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         $numero = 'DS' . date('ymd') . rand(1000, 9999);
         $commune = ''; // colonne conservée en base pour compatibilité, plus demandée séparément au client
+        
+        // PostgreSQL : utiliser des paramètres nommés ou ?, ?, ?
         $stmt = $pdo->prepare("INSERT INTO commandes
             (numero_commande, nom_client, telephone, email, wilaya, commune, adresse, mode_paiement, sous_total, frais_livraison, total)
             VALUES (?,?,?,?,?,?,?,?,?,?,?)");
