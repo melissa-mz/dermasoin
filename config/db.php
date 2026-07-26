@@ -1,17 +1,25 @@
 <?php
 // ============================================
-// CONNEXION À SUPABASE VIA URL (sans extension pgsql)
+// CONNEXION À LA BASE DE DONNÉES LOCALE (MySQL)
 // ============================================
 
-$database_url = 'postgresql://postgres.kblehqgqshwatlpsotem:dermasoin2026@aws-0-eu-west-3.pooler.supabase.com:5432/postgres';
+$DB_HOST = 'localhost';
+$DB_NAME = 'dermasoin';
+$DB_USER = 'root';
+$DB_PASS = '';
 
-// Utiliser PDO avec l'URL directement
 try {
-    $pdo = new PDO($database_url);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+    $pdo = new PDO(
+        "mysql:host=$DB_HOST;dbname=$DB_NAME;charset=utf8mb4",
+        $DB_USER,
+        $DB_PASS,
+        [
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+        ]
+    );
 } catch (PDOException $e) {
-    die("Erreur de connexion Supabase : " . $e->getMessage());
+    die("Erreur de connexion : " . $e->getMessage());
 }
 
 define('BASE_URL', '/dermasoin');
