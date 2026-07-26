@@ -124,17 +124,16 @@ button { font-family: var(--font-body); cursor: pointer; }
 }
 
 /* ---------- Header ---------- */
+/* ---------- Header ---------- */
 .site-header {
     position: sticky;
     top: 0;
     z-index: 100;
     background: #FFFFFF;
+    border-bottom: none;
+    box-shadow: none;
 }
-.site-header.scrolled {
-    background: #FFFFFF;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 2px 20px rgba(0,0,0,0.04);
-}
+
 .header-inner {
     display: flex;
     align-items: center;
