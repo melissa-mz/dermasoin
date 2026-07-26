@@ -41,20 +41,20 @@ $labels_paiement = [
         <div style="background:#FFFFFF;border-radius:var(--radius-lg);box-shadow:0 10px 34px rgba(4,151,167,0.10);overflow:hidden;">
 
            <!-- Fond vert pétrole avec texte BLANC PUR pour tout -->
-<div style="background:var(--petrole);padding:22px 30px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #025C66;">
-    <div>
-        <div style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.08em;color:#FFFFFF;font-weight:700;opacity:0.8;">N° de commande</div>
-        <div style="font-family:'Inter',sans-serif;font-weight:700;font-size:1.2rem;color:#FFFFFF;letter-spacing:0.03em;">
-            <?= htmlspecialchars($commande['numero_commande']) ?>
-        </div>
-    </div>
-    <div style="text-align:right;">
-        <div style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.08em;color:#FFFFFF;font-weight:700;opacity:0.8;">Total</div>
-        <div style="font-family:'Inter',sans-serif;font-weight:700;font-size:1.4rem;color:#FFFFFF;font-variant-numeric:tabular-nums;letter-spacing:0.03em;">
-            <?= prix_format($commande['total']) ?>
-        </div>
-    </div>
-</div>
+            <div style="background:var(--petrole);padding:22px 30px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #025C66;">
+                <div>
+                    <div style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.08em;color:#FFFFFF;font-weight:700;opacity:0.8;">N° de commande</div>
+                    <div style="font-family:'Inter',sans-serif;font-weight:700;font-size:1.2rem;color:#FFFFFF;letter-spacing:0.03em;">
+                        <?= htmlspecialchars($commande['numero_commande']) ?>
+                    </div>
+                </div>
+                <div style="text-align:right;">
+                    <div style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.08em;color:#FFFFFF;font-weight:700;opacity:0.8;">Total</div>
+                    <div style="font-family:'Inter',sans-serif;font-weight:700;font-size:1.4rem;color:#FFFFFF;font-variant-numeric:tabular-nums;letter-spacing:0.03em;">
+                        <?= prix_format($commande['total']) ?>
+                    </div>
+                </div>
+            </div>
 
             <div style="padding:28px 30px;">
                 <?php foreach ($articles as $a): $ss_total = $a['prix_unitaire'] * $a['quantite']; ?>
