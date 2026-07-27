@@ -31,6 +31,74 @@ $vedettes = $pdo->query("SELECT * FROM produits WHERE actif = 1 ORDER BY created
     </div>
 </section>
 
+<!-- ============================================
+     SECTION À PROPOS
+============================================ -->
+<section class="section about-section">
+    <div class="container">
+
+       <div class="section-head about-head">
+<span class="about-eyebrow">À propos de Nous</span>
+</div>
+
+        <div class="about-grid">
+
+        <div class="about-image-wrap">
+    <div class="about-image">
+        <img src="<?= BASE_URL ?>/assets/img/about.jpg" alt="DermaSoin médecine esthétique">
+    </div>
+    <div class="about-badge">
+        <span class="about-badge-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+        </span>
+        <span class="about-badge-text">Produits certifiés<span>Qualité professionnelle</span></span>
+    </div>
+</div>
+
+            <!-- TEXTE À DROITE -->
+            <div class="about-content">
+
+                <h2>
+    L'expertise <span class="accent-emeraude">esthétique</span><br>
+    au service de votre beauté
+</h2>
+                <p class="about-lead">
+                    DERMASOIN accompagne les professionnels de la médecine esthétique
+                    avec une sélection de produits premium, rigoureusement choisis.
+                </p>
+
+                <p>
+                    Notre mission est de proposer des solutions fiables et innovantes
+                    adaptées aux besoins des praticiens, avec une attention particulière
+                    portée à la qualité, la sécurité et l'excellence.
+                </p>
+
+                <div class="about-points">
+
+                    <div>
+                        <span>01</span>
+                        <p>Produits esthétiques professionnels</p>
+                    </div>
+
+                    <div>
+                        <span>02</span>
+                        <p>Qualité et sélection rigoureuse</p>
+                    </div>
+
+                    <div>
+                        <span>03</span>
+                        <p>Accompagnement personnalisé</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
 <section class="section cat-showcase">
     <div class="container">
         <div class="section-head">
@@ -97,9 +165,6 @@ $vedettes = $pdo->query("SELECT * FROM produits WHERE actif = 1 ORDER BY created
 <!-- ============================================
    SECTION MARQUES - SLIDER SANS BORDURE
    ============================================ -->
-<!-- ============================================
-   SECTION MARQUES - SLIDER SANS BORDURE
-   ============================================ -->
 <section class="section marques-slider-section">
     <div class="container">
         <div class="section-head" style="text-align: center; display: block;">
@@ -118,6 +183,7 @@ $vedettes = $pdo->query("SELECT * FROM produits WHERE actif = 1 ORDER BY created
         </div>
     </div>
 </section>
+
 <!-- JavaScript du slider - Drag to scroll -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {

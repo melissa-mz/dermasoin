@@ -1823,3 +1823,347 @@ button { font-family: var(--font-body); cursor: pointer; }
         padding: 5px 8px;
     }
 } 
+/* ============================================
+   SECTION À PROPOS - VERSION "WOW" AESTHETIC
+============================================ */
+
+.about-section {
+    background: #FFFFFF;
+    padding: 90px 0 100px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Glows décoratifs en fond de section, comme le hero */
+.about-section::before {
+    content: '';
+    position: absolute;
+    width: 480px;
+    height: 480px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(4,151,167,0.07) 0%, rgba(4,151,167,0.02) 45%, transparent 70%);
+    top: -180px;
+    left: -160px;
+    filter: blur(20px);
+    z-index: 0;
+    pointer-events: none;
+}
+.about-section::after {
+    content: '';
+    position: absolute;
+    width: 360px;
+    height: 360px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(27,197,216,0.06) 0%, transparent 70%);
+    bottom: -140px;
+    right: -100px;
+    filter: blur(20px);
+    z-index: 0;
+    pointer-events: none;
+}
+.about-section .container { position: relative; z-index: 1; }
+
+.about-head {
+    display: block;
+    margin-bottom: 55px;
+    text-align: left;
+}
+.about-eyebrow {
+    font-size: 0.75rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #1C1F1F !important;
+    font-weight: 700;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+.about-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 28px;
+    height: 2px;
+    background: #0497A7;
+    border-radius: 2px;
+}
+
+/* grille principale */
+.about-grid {
+    display: grid;
+    grid-template-columns: minmax(300px, 0.9fr) minmax(300px, 1fr);
+    gap: 75px;
+    align-items: center;
+}
+
+/* ---------- IMAGE : double blob en profondeur ---------- */
+.about-image-wrap {
+    position: relative;
+    max-width: 480px;
+}
+.about-image {
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+    height: 500px;
+    overflow: hidden;
+    border-radius: 48% 52% 45% 55% / 42% 45% 55% 58%;
+    box-shadow: 0 30px 80px rgba(4,151,167,.16);
+    z-index: 2;
+    animation: about-blob-morph 18s ease-in-out infinite;
+}
+
+/* Forme jumelle décalée derrière l'image, pour la profondeur */
+.about-image::before {
+    content: "";
+    position: absolute;
+    inset: -22px;
+    z-index: -1;
+    border-radius: inherit;
+    background:
+        radial-gradient(circle at 25% 20%, rgba(4,151,167,0.16), transparent 60%),
+        radial-gradient(circle at 80% 85%, rgba(27,197,216,0.10), transparent 60%);
+    filter: blur(22px);
+}
+
+.about-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform .7s cubic-bezier(.2,.8,.2,1);
+}
+.about-image:hover img {
+    transform: scale(1.06);
+}
+
+@keyframes about-blob-morph {
+    0%, 100% { border-radius: 48% 52% 45% 55% / 42% 45% 55% 58%; }
+    33%      { border-radius: 58% 42% 55% 45% / 50% 42% 58% 50%; }
+    66%      { border-radius: 42% 58% 50% 50% / 55% 50% 45% 45%; }
+}
+
+/* Badge flottant sur l'image (petite carte "confiance") */
+.about-badge {
+    position: absolute;
+    bottom: 22px;
+    left: -28px;
+    z-index: 3;
+    background: #FFFFFF;
+    border-radius: 18px;
+    padding: 16px 22px;
+    box-shadow: 0 18px 40px rgba(4,151,167,.20);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    max-width: 230px;
+}
+.about-badge-icon {
+    flex-shrink: 0;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #1BC5D8, #0497A7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+}
+.about-badge-icon svg { width: 20px; height: 20px; }
+.about-badge-text {
+    font-family: var(--font-display);
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #1C1F1F;
+    line-height: 1.3;
+}
+.about-badge-text span {
+    display: block;
+    font-size: 0.68rem;
+    font-weight: 500;
+    color: #5C605F;
+    margin-top: 1px;
+}
+
+/* ---------- TEXTE ---------- */
+.about-content {
+    max-width: 560px;
+    position: relative;
+}
+
+.about-content h2 {
+    font-size: clamp(2rem, 3vw, 2.7rem);
+    line-height: 1.25;
+    color: #1C1F1F;
+    margin-bottom: 25px;
+}
+
+/* Citation géante en filigrane derrière le lead */
+.about-lead {
+    position: relative;
+    font-size: 1.15rem;
+    font-weight: 600;
+    line-height: 1.8;
+    color: #1C1F1F;
+    margin-bottom: 18px;
+    padding-left: 26px;
+    border-left: 3px solid #0497A7;
+}
+
+.about-content > p:not(.about-lead) {
+    color: #5C605F;
+    font-size: 1rem;
+    line-height: 1.9;
+    margin-bottom: 30px;
+}
+
+/* ---------- POINTS : ligne connectrice + effet au survol ---------- */
+.about-points {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 35px;
+    position: relative;
+}
+.about-points::before {
+    content: '';
+    position: absolute;
+    left: 21px;
+    top: 30px;
+    bottom: 30px;
+    width: 2px;
+    background: linear-gradient(180deg, rgba(4,151,167,0.35), rgba(4,151,167,0.05));
+    z-index: 0;
+}
+
+.about-points div {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    position: relative;
+    z-index: 1;
+    padding: 10px 14px 10px 4px;
+    border-radius: 14px;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+.about-points div:hover {
+    background: rgba(4,151,167,0.05);
+    transform: translateX(6px);
+}
+
+.about-points span {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #1BC5D8, #0497A7);
+    color: #fff;
+    font-size: .75rem;
+    font-weight: 700;
+    box-shadow: 0 6px 16px rgba(4,151,167,0.25);
+    transition: transform 0.3s ease;
+}
+.about-points div:hover span {
+    transform: scale(1.12) rotate(-6deg);
+}
+
+.about-points p {
+    margin: 0;
+    color: #1C1F1F;
+    font-size: .95rem;
+    font-weight: 600;
+}
+
+/* Apparition en fondu au chargement (sans JS) */
+.about-image-wrap,
+.about-content > * {
+    animation: about-fade-up 0.8s ease both;
+}
+.about-image-wrap { animation-delay: 0.05s; }
+.about-content .eyebrow,
+.about-content h2 { animation-delay: 0.1s; }
+.about-content .about-lead { animation-delay: 0.2s; }
+.about-content > p:not(.about-lead) { animation-delay: 0.3s; }
+.about-points { animation-delay: 0.4s; }
+
+@keyframes about-fade-up {
+    from { opacity: 0; transform: translateY(22px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* RESPONSIVE */
+@media(max-width:1000px) {
+    .about-grid {
+        gap: 45px;
+    }
+    .about-image {
+        height: 430px;
+    }
+    .about-badge { left: 16px; }
+}
+
+@media(max-width:768px) {
+    .about-section {
+        padding: 60px 0;
+    }
+    .about-head {
+        margin-bottom: 35px;
+    }
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 56px;
+    }
+    .about-image-wrap { max-width: 100%; margin: 0 auto; }
+    .about-image {
+        max-width: 100%;
+        height: 360px;
+        margin: auto;
+        border-radius: 45% 55% 50% 50% / 35% 45% 55% 65%;
+    }
+    .about-badge {
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: -24px;
+        max-width: 260px;
+    }
+    .about-content h2 {
+        font-size: 2rem;
+    }
+    .about-lead {
+        font-size: 1.05rem;
+    }
+    .about-points {
+        gap: 4px;
+        margin-top: 46px;
+    }
+    .about-points span {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+@media(max-width:420px) {
+    .about-image {
+        height: 310px;
+    }
+    .about-badge {
+        padding: 12px 16px;
+        gap: 10px;
+        max-width: 220px;
+    }
+    .about-badge-icon { width: 36px; height: 36px; }
+    .about-content h2 {
+        font-family: var(--font-display);
+        font-size: clamp(2rem, 3vw, 2.8rem);
+        font-weight: 800;
+        line-height: 1.25;
+        color: #1C1F1F;
+        margin-bottom: 25px;
+        letter-spacing: -0.02em;
+    }
+    .about-content h2 .accent-emeraude {
+        color: var(--petrole);
+        font-weight: 800;
+    }
+}
