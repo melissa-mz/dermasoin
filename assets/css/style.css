@@ -2167,3 +2167,125 @@ button { font-family: var(--font-body); cursor: pointer; }
         font-weight: 800;
     }
 }
+/* ============================================
+   SECTION TÉMOIGNAGES - WOW AESTHETIC
+============================================ */
+
+.testimonials-section {
+    background: #F8F8F8;
+    padding: 80px 0 100px;
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.testimonial-card {
+    background: #FFFFFF;
+    border-radius: 20px;
+    padding: 35px 30px 30px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.04);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    border: 1px solid rgba(4,151,167,0.06);
+    position: relative;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 60px rgba(4,151,167,0.10);
+}
+
+.testimonial-card::before {
+    content: '"';
+    position: absolute;
+    top: -5px;
+    right: 25px;
+    font-size: 6rem;
+    color: rgba(4,151,167,0.06);
+    font-family: var(--font-display);
+    line-height: 1;
+}
+
+.testimonial-stars {
+    display: flex;
+    gap: 3px;
+    margin-bottom: 16px;
+}
+.testimonial-stars svg {
+    width: 20px;
+    height: 20px;
+    fill: #D4AF37; /* Or */
+}
+.testimonial-text {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--charbon-soft);
+    margin-bottom: 22px;
+    font-style: italic;
+    position: relative;
+    z-index: 1;
+}
+
+.testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    border-top: 1px solid rgba(4,151,167,0.06);
+    padding-top: 18px;
+}
+
+.testimonial-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #1BC5D8, #0497A7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+    font-weight: 700;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+.testimonial-author strong {
+    display: block;
+    font-size: 0.9rem;
+    color: #1C1F1F;
+    font-weight: 700;
+}
+
+.testimonial-author span {
+    display: block;
+    font-size: 0.78rem;
+    color: var(--charbon-soft);
+    font-weight: 500;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+    .testimonials-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+}
+
+@media (max-width: 768px) {
+    .testimonials-section {
+        padding: 60px 0 70px;
+    }
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    .testimonial-card {
+        padding: 25px 20px 22px;
+    }
+    .testimonial-card::before {
+        font-size: 4rem;
+        right: 18px;
+    }
+}

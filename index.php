@@ -243,5 +243,75 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 </script>
+<!-- ============================================
+   SECTION TÉMOIGNAGES - WOW AESTHETIC
+============================================ -->
+<section class="section testimonials-section">
+    <div class="container">
+        <div class="section-head" style="text-align: center; display: block;">
+            <span class="eyebrow" style="color: #1C1F1F; font-weight: 700;">Ils nous font confiance</span>
+            <h2>Ce que nos clients <span class="accent-emeraude">disent</span></h2>
+        </div>
+
+        <div class="testimonials-grid">
+            <!-- Témoignage 1 -->
+            <div class="testimonial-card">
+                <div class="testimonial-stars">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="#D4AF37"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="#D4AF37"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="#D4AF37"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="#D4AF37"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="#D4AF37"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                </div>
+                <p class="testimonial-text">
+                    "Ouiiii je l'ai récupéré, Merci beaucoup pour votre réactivité ! J'avais commandé un peu tard et j'étais vraiment pressée, mais vous avez assuré en me l'envoyant à temps. Je vous remercie sincèrement pour votre professionnalisme. A très bientôt !"
+                </p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">
+                    </div>
+                    
+                </div>
+            </div>
+
+            <!-- Témoignage 2 -->
+            <div class="testimonial-card">
+                <div class="testimonial-stars">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="#D4AF37"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="#D4AF37"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="#D4AF37"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="#D4AF37"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="#D4AF37"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                </div>
+                <p class="testimonial-text">
+                    "Merci beaucoup pour votre professionnalisme et votre ponctualité. Les livraisons sont toujours à l'heure, c'est un vrai plaisir de travailler avec vous. Merci 😊 À très bientôt !"
+                </p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">
+                    </div>
+                   
+                </div>
+            </div>
+
+            <!-- Témoignage 3 -->
+            <div class="testimonial-card">
+                <div class="testimonial-stars">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="#D4AF37"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="#D4AF37"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="#D4AF37"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="#D4AF37"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="#E8E0D0"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                </div>
+                <p class="testimonial-text">
+                    "Je viens de découvrir votre compte aujourd'hui grâce aux partages des consoeurs. Ravie de cette découverte !"
+                </p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 <?php require_once __DIR__ . '/includes/footer.php'; ?>
