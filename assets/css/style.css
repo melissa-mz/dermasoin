@@ -160,12 +160,13 @@ button { font-family: var(--font-body); cursor: pointer; }
     color: #0497A7;
 }
   .logo .logo-icon {
-        width: 100px !important;
-        height: auto !important;
-        max-height: 70px !important;
-        object-fit: contain;
-        margin: 0 auto !important;
-    }
+    width: 180px !important;
+    height: auto !important;
+    max-width: 100%;
+    max-height: none !important;
+    object-fit: contain;
+    display: block;
+}
 .main-nav { display: flex; gap: 32px; align-items: center; }
 .main-nav a {
     position: relative;

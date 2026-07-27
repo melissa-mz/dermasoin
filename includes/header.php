@@ -24,7 +24,7 @@ $nav_categories = $pdo->query("SELECT * FROM categories ORDER BY ordre")->fetchA
     <div class="header-inner">
         <a href="<?= $base ?>/index.php" class="logo">
 <img src="<?= $base ?>/assets/img/logo1.jpg" alt="DermaSoin" class="logo-icon" style="width: auto; height: auto; max-width: none; max-height: none;">
-            Derma<span>Soin</span>
+         
         </a>
 
         <!-- BOUTON HAMBURGER (indispensable pour le menu mobile) -->
