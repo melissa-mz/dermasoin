@@ -266,11 +266,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 <p class="testimonial-text">
                     "Ouiiii je l'ai récupéré, Merci beaucoup pour votre réactivité ! J'avais commandé un peu tard et j'étais vraiment pressée, mais vous avez assuré en me l'envoyant à temps. Je vous remercie sincèrement pour votre professionnalisme. A très bientôt !"
                 </p>
-                <div class="testimonial-author">
-                    <div class="testimonial-avatar">
-                    </div>
-                    
-                </div>
             </div>
 
             <!-- Témoignage 2 -->
@@ -285,11 +280,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 <p class="testimonial-text">
                     "Merci beaucoup pour votre professionnalisme et votre ponctualité. Les livraisons sont toujours à l'heure, c'est un vrai plaisir de travailler avec vous. Merci 😊 À très bientôt !"
                 </p>
-                <div class="testimonial-author">
-                    <div class="testimonial-avatar">
-                    </div>
-                   
-                </div>
             </div>
 
             <!-- Témoignage 3 -->
@@ -304,14 +294,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 <p class="testimonial-text">
                     "Je viens de découvrir votre compte aujourd'hui grâce aux partages des consoeurs. Ravie de cette découverte !"
                 </p>
-                <div class="testimonial-author">
-                    <div class="testimonial-avatar">
-                    </div>
-                    
-                </div>
             </div>
         </div>
     </div>
 </section>
-
 <?php require_once __DIR__ . '/includes/footer.php'; ?>
