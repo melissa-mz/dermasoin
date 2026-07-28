@@ -23,8 +23,8 @@ $current = basename($_SERVER['PHP_SELF']);
 <div class="admin-shell">
     <nav class="admin-navbar">
         <a href="<?= BASE_URL ?>/admin/index.php" class="logo">
-            <img src="<?= BASE_URL ?>/assets/img/logo.jpg" alt="DermaSoin" class="logo-icon" width="90" height="70">
-            Derma<span>Soin</span>
+            <img src="<?= BASE_URL ?>/assets/img/logo1.jpg" class="logo-icon" width="90" height="70">
+            
         </a>
         <div class="admin-nav-links">
             <a href="<?= BASE_URL ?>/admin/index.php" class="<?= $current==='index.php'?'active':'' ?>">Tableau de bord</a>
