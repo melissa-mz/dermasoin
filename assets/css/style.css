@@ -1902,15 +1902,14 @@ button { font-family: var(--font-body); cursor: pointer; }
 .about-image {
     position: relative;
     width: 100%;
-    max-width: 480px;
-    height: 500px;
+    max-width: 380px;
+    height: 400px;
     overflow: hidden;
     border-radius: 48% 52% 45% 55% / 42% 45% 55% 58%;
     box-shadow: 0 30px 80px rgba(4,151,167,.16);
     z-index: 2;
     animation: about-blob-morph 18s ease-in-out infinite;
 }
-
 /* Forme jumelle décalée derrière l'image, pour la profondeur */
 .about-image::before {
     content: "";
@@ -1999,9 +1998,9 @@ button { font-family: var(--font-body); cursor: pointer; }
 /* Citation géante en filigrane derrière le lead */
 .about-lead {
     position: relative;
-    font-size: 1.15rem;
-    font-weight: 600;
-    line-height: 1.8;
+    font-size: 0.95rem;
+    font-weight: 500;
+    line-height: 1.6;
     color: #1C1F1F;
     margin-bottom: 18px;
     padding-left: 26px;
@@ -2145,7 +2144,7 @@ button { font-family: var(--font-body); cursor: pointer; }
 
 @media(max-width:420px) {
     .about-image {
-        height: 310px;
+        height: 350px;
     }
     .about-badge {
         padding: 12px 16px;
