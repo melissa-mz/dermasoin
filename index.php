@@ -67,27 +67,23 @@ $vedettes = $pdo->query("SELECT * FROM produits WHERE actif = 1 ORDER BY created
                     avec une sélection de produits premium, rigoureusement choisis.
                 </p>
 
-                <p>
-                    Notre mission est de proposer des solutions fiables et innovantes
-                    adaptées aux besoins des praticiens, avec une attention particulière
-                    portée à la qualité, la sécurité et l'excellence.
-                </p>
+               
 
                 <div class="about-points">
 
                     <div>
                         <span>01</span>
-                        <p>Produits esthétiques professionnels</p>
+                        <p>+50 références</p>
                     </div>
 
                     <div>
                         <span>02</span>
-                        <p>Qualité et sélection rigoureuse</p>
+                        <p>+20 marques internationales</p>
                     </div>
 
                     <div>
                         <span>03</span>
-                        <p>Accompagnement personnalisé</p>
+                        <p>Produits 100% authentiques</p>
                     </div>
 
                 </div>
