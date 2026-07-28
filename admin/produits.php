@@ -70,12 +70,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
     }
-
-    // ============================================
-    // CORRECTION POUR POSTGRESQL (SUPABASE)
-    // ============================================
-    $en_vedette = isset($_POST['en_vedette']) && $_POST['en_vedette'] == 'on' ? 'TRUE' : 'FALSE';
-    $necessite_agrement = isset($_POST['necessite_agrement']) && $_POST['necessite_agrement'] == 'on' ? 'TRUE' : 'FALSE';
+// ============================================
+// CORRECTION POUR POSTGRESQL (SUPABASE)
+// ============================================
+$en_vedette = isset($_POST['en_vedette']) && $_POST['en_vedette'] == 'on' ? 1 : 0;
+$necessite_agrement = isset($_POST['necessite_agrement']) && $_POST['necessite_agrement'] == 'on' ? 1 : 0;
 
     // Données de base (sans image)
     $data = [
