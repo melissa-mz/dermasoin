@@ -61,7 +61,7 @@ $vedettes = $pdo->query("SELECT * FROM produits WHERE actif = 1 ORDER BY created
             <h2>
     Votre expertise mérite <span class="accent-emeraude">l'excellence</span>
 </h2>
-               <<p class="about-lead">
+               <p class="about-lead">
     <strong>DERMASOIN</strong> est spécialisée dans la distribution de produits de médecine esthétique destinés aux professionnels. Nous sélectionnons des marques reconnues pour leur qualité, leur innovation et leur fiabilité.
 </p>
 

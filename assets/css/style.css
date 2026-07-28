@@ -2090,14 +2090,14 @@ button { font-family: var(--font-body); cursor: pointer; }
     from { opacity: 0; transform: translateY(22px); }
     to   { opacity: 1; transform: translateY(0); }
 }
-
 /* RESPONSIVE */
 @media(max-width:1000px) {
     .about-grid {
         gap: 45px;
     }
     .about-image {
-        height: 430px;
+        height: 350px;
+        max-width: 320px;
     }
     .about-badge { left: 16px; }
 }
@@ -2113,10 +2113,15 @@ button { font-family: var(--font-body); cursor: pointer; }
         grid-template-columns: 1fr;
         gap: 56px;
     }
-    .about-image-wrap { max-width: 100%; margin: 0 auto; }
+    .about-image-wrap { 
+        max-width: 100%; 
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+    }
     .about-image {
-        max-width: 100%;
-        height: 360px;
+        max-width: 280px;
+        height: 300px;
         margin: auto;
         border-radius: 45% 55% 50% 50% / 35% 45% 55% 65%;
     }
@@ -2130,7 +2135,7 @@ button { font-family: var(--font-body); cursor: pointer; }
         font-size: 2rem;
     }
     .about-lead {
-        font-size: 1.05rem;
+        font-size: 0.95rem;
     }
     .about-points {
         gap: 4px;
@@ -2144,17 +2149,28 @@ button { font-family: var(--font-body); cursor: pointer; }
 
 @media(max-width:420px) {
     .about-image {
-        height: 350px;
+        max-width: 220px;
+        height: 240px;
     }
     .about-badge {
-        padding: 12px 16px;
-        gap: 10px;
-        max-width: 220px;
+        padding: 10px 14px;
+        gap: 8px;
+        max-width: 200px;
+        bottom: -20px;
     }
-    .about-badge-icon { width: 36px; height: 36px; }
+    .about-badge-icon { 
+        width: 30px; 
+        height: 30px; 
+    }
+    .about-badge-text {
+        font-size: 0.7rem;
+    }
+    .about-badge-text span {
+        font-size: 0.6rem;
+    }
     .about-content h2 {
         font-family: var(--font-display);
-        font-size: clamp(2rem, 3vw, 2.8rem);
+        font-size: clamp(1.6rem, 3vw, 2.2rem);
         font-weight: 800;
         line-height: 1.25;
         color: #1C1F1F;
@@ -2164,6 +2180,10 @@ button { font-family: var(--font-body); cursor: pointer; }
     .about-content h2 .accent-emeraude {
         color: var(--petrole);
         font-weight: 800;
+    }
+    .about-lead {
+        font-size: 0.85rem;
+        padding-left: 16px;
     }
 }
 /* ============================================
