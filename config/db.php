@@ -36,9 +36,7 @@ if ($is_local) {
     define('BASE_URL', '/dermasoin');
     
 } else {
-    // ============================================
-    // PRODUCTION : Supabase (Render)
-    // ============================================
+    
     $database_url = "postgresql://postgres.blquaulqgsifbeuvoegs:$supabase_password@aws-0-eu-west-1.pooler.supabase.com:5432/postgres";
 
     $url = parse_url($database_url);
@@ -62,7 +60,7 @@ if ($is_local) {
         die("Erreur de connexion Supabase : " . $e->getMessage());
     }
 
-    define('BASE_URL', 'https://dermasoin-elhc.onrender.com');
+    define('BASE_URL', 'https://dermasoin.dz');
 }
 
 $conn = $pdo;
