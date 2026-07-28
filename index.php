@@ -63,8 +63,7 @@ $vedettes = $pdo->query("SELECT * FROM produits WHERE actif = 1 ORDER BY created
     au service de votre beauté
 </h2>
                 <p class="about-lead">
-                    DERMASOIN accompagne les professionnels de la médecine esthétique
-                    avec une sélection de produits premium, rigoureusement choisis.
+                    DERMASOIN est spécialisée dans la distribution de produits de médecine esthétique destinés aux professionnels. Nous sélectionnons des marques reconnues pour leur qualité, leur innovation et leur fiabilité.
                 </p>
 
                
