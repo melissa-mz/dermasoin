@@ -58,9 +58,8 @@ $vedettes = $pdo->query("SELECT * FROM produits WHERE actif = 1 ORDER BY created
             <!-- TEXTE À DROITE -->
             <div class="about-content">
 
-                <h2>
-    L'expertise <span class="accent-emeraude">esthétique</span><br>
-    au service de votre beauté
+            <h2>
+    Votre expertise mérite <span class="accent-emeraude">l'excellence</span>
 </h2>
                 <p class="about-lead">
                     DERMASOIN est spécialisée dans la distribution de produits de médecine esthétique destinés aux professionnels. Nous sélectionnons des marques reconnues pour leur qualité, leur innovation et leur fiabilité.
