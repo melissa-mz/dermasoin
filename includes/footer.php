@@ -1,4 +1,9 @@
-<footer class="site-footer" id="contact">
+
+<?php
+if (!isset($pdo)) {
+    require_once __DIR__ . '/../config/db.php';
+}
+?><footer class="site-footer" id="contact">
     <div class="container">
         <div class="footer-frame">
         <div class="footer-grid">

@@ -4,22 +4,15 @@ $page_title = 'Produits';
 
 require_once __DIR__ . '/../config/db.php';
 
-// ============================================
-// DÉMARRER LA SESSION
-// ============================================
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// Vérifier que l'admin est connecté
 if (!isset($_SESSION['admin_id'])) {
     header('Location: ' . BASE_URL . '/admin/login.php');
     exit;
 }
 
-// ============================================
-// SUPPRESSION
-// ============================================
 if (isset($_GET['supprimer'])) {
     $id = (int)$_GET['supprimer'];
     
